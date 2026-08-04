@@ -1,0 +1,18 @@
+{
+  "id": "case-01-path-a",
+  "case_id": "case-01-straightforward",
+  "analyst_id": "analyst-a",
+  "question": "What most likely caused the authentication outage?",
+  "evidence": [
+    {"id": "E1", "text": "Authentication failures began at 14:02 UTC."},
+    {"id": "E2", "text": "A configuration deployment completed at 14:01 UTC."},
+    {"id": "E3", "text": "Token validation errors reported an unexpected issuer."},
+    {"id": "E4", "text": "Rolling back the deployment restored service at 14:19 UTC."}
+  ],
+  "units": [
+    {"id": "A1", "type": "observation", "text": "Failures began one minute after the configuration deployment completed.", "evidence_refs": ["E1", "E2"], "depends_on": [], "confidence": 0.98, "source": "guided", "confirmed": true},
+    {"id": "A2", "type": "inference", "text": "The deployment likely changed the token issuer configuration.", "evidence_refs": ["E3"], "depends_on": ["A1"], "confidence": 0.82, "source": "guided", "confirmed": true},
+    {"id": "A3", "type": "claim", "text": "The outage was caused by a bad issuer configuration introduced in the deployment.", "evidence_refs": ["E4"], "depends_on": ["A2"], "confidence": 0.9, "source": "guided", "confirmed": true},
+    {"id": "A4", "type": "unknown", "text": "It is unknown why pre-deployment validation did not catch the issuer mismatch.", "evidence_refs": [], "depends_on": ["A3"], "confidence": 0.75, "source": "guided", "confirmed": true}
+  ]
+}

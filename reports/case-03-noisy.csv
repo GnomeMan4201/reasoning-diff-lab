@@ -1,0 +1,7 @@
+event_id,kind,case_id,path_a,path_b,unit_a,unit_b,reviewer_decision,relation
+dependency_divergence:A4:B3,dependency_divergence,case-03-noisy,case-03-path-a,case-03-path-b,A4,B3,related,contradiction
+reviewer_confirmed_contradiction:A4:B3,reviewer_confirmed_contradiction,case-03-noisy,case-03-path-a,case-03-path-b,A4,B3,related,contradiction
+undeclared_support_gap:a:A4,undeclared_support_gap,case-03-noisy,case-03-path-a,case-03-path-b,A4,,,
+unmatched_unit:-:B4,unmatched_unit,case-03-noisy,case-03-path-a,case-03-path-b,,B4,,
+unmatched_unit:A2:-,unmatched_unit,case-03-noisy,case-03-path-a,case-03-path-b,A2,,,
+unmatched_unit:A5:-,unmatched_unit,case-03-noisy,case-03-path-a,case-03-path-b,A5,,,

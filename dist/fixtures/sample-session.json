@@ -1,0 +1,36 @@
+{
+  "_synthetic_illustrative_only": "This file demonstrates the expected shape of a session file for cli/analyze.js. It is NOT trial data. No human pilot has been run yet.",
+  "graded_events": [
+    { "event_id": "convergent_conclusion_different_path:A3:B4", "grade": "useful_nonobvious", "importance": "important" },
+    { "event_id": "divergent_interpretation:A1:B1", "grade": "useful_obvious" },
+    { "event_id": "confidence_divergence:A1:B1", "grade": "accurate_low_value" },
+    { "event_id": "undeclared_support_gap:a:A4", "grade": "misleading" }
+  ],
+  "missing_divergences": [
+    { "case_id": "case-01-straightforward", "importance": "minor" }
+  ],
+  "session_timings": [
+    { "analyst_id": "analyst-a", "case_id": "case-01-straightforward", "mode": "guided", "total_ms": 480000, "edits": 12, "abandoned_fields": 0, "validation_errors": 1, "completion": true },
+    { "analyst_id": "analyst-b", "case_id": "case-01-straightforward", "mode": "prose", "total_ms": 620000, "edits": 20, "abandoned_fields": 1, "validation_errors": 0, "completion": true }
+  ],
+  "reviewer_timings": [
+    { "case_id": "case-01-straightforward", "condition": "tool", "total_ms": 300000 },
+    { "case_id": "case-01-straightforward", "condition": "baseline_prose", "total_ms": 360000 }
+  ],
+  "match_logs": [
+    { "mode": "suggested_hidden_score", "outcome": "accepted", "time_to_match_ms": 8000 },
+    { "mode": "suggested_hidden_score", "outcome": "rejected", "time_to_match_ms": 15000 },
+    { "mode": "blind", "outcome": "manual", "time_to_match_ms": 22000 }
+  ],
+  "reviewer_decisions_flat": [
+    { "a": "A1", "b": "B1", "decision": "related", "match_source": "suggested" },
+    { "a": "A2", "b": "B3", "decision": "same_position", "match_source": "suggested" },
+    { "a": "A3", "b": "B4", "decision": "same_position", "match_source": "manual" }
+  ],
+  "questionnaires": [
+    { "participant_id": "analyst-a", "reuse_intent": 4 },
+    { "participant_id": "analyst-b", "reuse_intent": 3 },
+    { "participant_id": "reviewer-1", "reuse_intent": 5 }
+  ],
+  "protocol_deviations": []
+}

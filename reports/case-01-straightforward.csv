@@ -1,0 +1,7 @@
+event_id,kind,case_id,path_a,path_b,unit_a,unit_b,reviewer_decision,relation
+convergent_conclusion_different_path:A3:B4,convergent_conclusion_different_path,case-01-straightforward,case-01-path-a,case-01-path-b,A3,B4,same_position,
+divergent_interpretation:A1:B1,divergent_interpretation,case-01-straightforward,case-01-path-a,case-01-path-b,A1,B1,related,
+unmatched_unit:-:B0,unmatched_unit,case-01-straightforward,case-01-path-a,case-01-path-b,,B0,,
+unmatched_unit:-:B2,unmatched_unit,case-01-straightforward,case-01-path-a,case-01-path-b,,B2,,
+unmatched_unit:-:B5,unmatched_unit,case-01-straightforward,case-01-path-a,case-01-path-b,,B5,,
+unmatched_unit:A4:-,unmatched_unit,case-01-straightforward,case-01-path-a,case-01-path-b,A4,,,

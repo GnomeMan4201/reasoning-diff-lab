@@ -1,0 +1,10 @@
+{
+  "case_id": "case-01-straightforward",
+  "reviewer_id": "reviewer-1",
+  "review_mode": "suggested_hidden_score",
+  "decisions": [
+    {"a": "A1", "b": "B1", "decision": "related", "match_source": "suggested", "confidence": "high", "note": "Same timeline observation; B does not fold in the rollback evidence here."},
+    {"a": "A2", "b": "B3", "decision": "same_position", "match_source": "suggested", "confidence": "high"},
+    {"a": "A3", "b": "B4", "decision": "same_position", "match_source": "suggested", "confidence": "medium", "note": "Same stated conclusion; declared support differs (A cites rollback E4 on the claim itself, B does not)."}
+  ]
+}

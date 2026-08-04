@@ -1,0 +1,10 @@
+{
+  "case_id": "case-02-ambiguous",
+  "reviewer_id": "reviewer-1",
+  "review_mode": "suggested_visible_score",
+  "decisions": [
+    {"a": "A2", "b": "B4", "decision": "related", "match_source": "suggested", "confidence": "low", "note": "Both touch on external context for the churn, but one is an observation and the other an unstated assumption."},
+    {"a": "A3", "b": "B2", "decision": "related", "match_source": "suggested", "confidence": "medium", "note": "Same reasoning role, but built on entirely different evidence."},
+    {"a": "A4", "b": "B3", "decision": "related", "relation": "contradiction", "match_source": "suggested", "confidence": "high", "note": "A4 asserts price was the primary driver; B3 explicitly asserts price was secondary and support was primary. Both cannot be the primary driver at once."}
+  ]
+}

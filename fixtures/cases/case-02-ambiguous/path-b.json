@@ -1,0 +1,18 @@
+{
+  "id": "case-02-path-b",
+  "case_id": "case-02-ambiguous",
+  "analyst_id": "analyst-b",
+  "question": "Why did the enterprise account most likely churn?",
+  "evidence": [
+    {"id": "E1", "text": "The account's contract renewal quote increased 40% year over year."},
+    {"id": "E2", "text": "Exit survey response: 'cost no longer matched the value we were getting, and support was slow toward the end.'"},
+    {"id": "E3", "text": "Support ticket volume for this account tripled in the final quarter."},
+    {"id": "E4", "text": "A competitor announced a comparable product at a lower price two months before churn."}
+  ],
+  "units": [
+    {"id": "B1", "type": "observation", "text": "Support ticket volume tripled in the account's final quarter.", "evidence_refs": ["E3"], "depends_on": [], "confidence": 0.95, "source": "guided", "confirmed": true},
+    {"id": "B2", "type": "inference", "text": "Rising ticket volume without resolution likely eroded the account's trust before the renewal conversation happened.", "evidence_refs": ["E3"], "depends_on": ["B1"], "confidence": 0.68, "source": "guided", "confirmed": true},
+    {"id": "B3", "type": "claim", "text": "Deteriorating support quality was the primary driver of churn, and the price increase was a secondary irritant, not the cause.", "evidence_refs": ["E2"], "depends_on": ["B2"], "confidence": 0.65, "source": "guided", "confirmed": true},
+    {"id": "B4", "type": "assumption", "text": "The exit survey response reflects the account's real priority ordering and is not just polite phrasing.", "evidence_refs": [], "depends_on": [], "confidence": 0.55, "source": "guided", "confirmed": true}
+  ]
+}

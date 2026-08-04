@@ -1,0 +1,15 @@
+{
+  "case_id": "case-03-noisy",
+  "title": "Refund request spike (noisy, incomplete)",
+  "research_question": "What most likely explains the spike in refund requests last week?",
+  "difficulty": "noisy",
+  "analyst_instructions": "The evidence packet includes items that may be irrelevant, and it does not fully resolve the question. Do not force a confident conclusion the evidence cannot support — using the 'unknown' type is a legitimate and expected outcome for this case.",
+  "reviewer_instructions": "Watch for units that assert an inference or claim with no declared evidence or dependency ('undeclared_support_gap') — this case is designed to make that easy to do under time pressure. Also check the Evidence Usage table for evidence neither analyst used.",
+  "baseline_prose_instructions": "Same as Case 1: give the reviewer only the raw prose write-ups for the baseline condition.",
+  "expected_methodological_risks": [
+    "Analysts under time pressure on noisy cases are the most likely to skip declaring evidence/dependencies even when they had a reason — 'undeclared_support_gap' events here may over-count relative to true reasoning quality. This is exactly the ecological-validity risk named in docs/LIMITATIONS.md.",
+    "A red herring evidence item is included; an analyst citing it is not wrong to have considered it, and the tool has no way to grade whether a citation was a good use of attention."
+  ],
+  "has_designed_correct_answer": false,
+  "design_note_do_not_show_before_grading": "E4 (a billing-page redesign shipped the same week) is a plausible-looking but unrelated evidence item — the actual timeline correlation is with a shipping-carrier delay (E1/E2). One analyst is scripted to state a claim under time pressure with no declared support at all, to test whether 'undeclared_support_gap' fires and whether reviewers find that useful or merely noisy."
+}

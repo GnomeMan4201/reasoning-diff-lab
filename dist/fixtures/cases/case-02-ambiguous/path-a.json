@@ -1,0 +1,19 @@
+{
+  "id": "case-02-path-a",
+  "case_id": "case-02-ambiguous",
+  "analyst_id": "analyst-a",
+  "question": "Why did the enterprise account most likely churn?",
+  "evidence": [
+    {"id": "E1", "text": "The account's contract renewal quote increased 40% year over year."},
+    {"id": "E2", "text": "Exit survey response: 'cost no longer matched the value we were getting, and support was slow toward the end.'"},
+    {"id": "E3", "text": "Support ticket volume for this account tripled in the final quarter."},
+    {"id": "E4", "text": "A competitor announced a comparable product at a lower price two months before churn."}
+  ],
+  "units": [
+    {"id": "A1", "type": "observation", "text": "The renewal quote rose sharply just before churn.", "evidence_refs": ["E1"], "depends_on": [], "confidence": 0.95, "source": "guided", "confirmed": true},
+    {"id": "A2", "type": "observation", "text": "A cheaper competitor product appeared shortly before churn.", "evidence_refs": ["E4"], "depends_on": [], "confidence": 0.9, "source": "guided", "confirmed": true},
+    {"id": "A3", "type": "inference", "text": "The customer had a lower-cost alternative available right when the price rose.", "evidence_refs": ["E4"], "depends_on": ["A1", "A2"], "confidence": 0.75, "source": "guided", "confirmed": true},
+    {"id": "A4", "type": "claim", "text": "Price was the primary driver of churn.", "evidence_refs": ["E2"], "depends_on": ["A3"], "confidence": 0.7, "source": "guided", "confirmed": true},
+    {"id": "A5", "type": "unknown", "text": "It is unknown whether the account would have renewed at the old price even with the competitor offer available.", "evidence_refs": [], "depends_on": ["A4"], "confidence": 0.5, "source": "guided", "confirmed": true}
+  ]
+}

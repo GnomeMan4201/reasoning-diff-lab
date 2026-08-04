@@ -1,0 +1,20 @@
+{
+  "id": "case-01-path-b",
+  "case_id": "case-01-straightforward",
+  "analyst_id": "analyst-b",
+  "question": "What most likely caused the authentication outage?",
+  "evidence": [
+    {"id": "E1", "text": "Authentication failures began at 14:02 UTC."},
+    {"id": "E2", "text": "A configuration deployment completed at 14:01 UTC."},
+    {"id": "E3", "text": "Token validation errors reported an unexpected issuer."},
+    {"id": "E4", "text": "Rolling back the deployment restored service at 14:19 UTC."}
+  ],
+  "units": [
+    {"id": "B1", "type": "observation", "text": "The outage closely followed the deployment.", "evidence_refs": ["E1", "E2"], "depends_on": [], "confidence": 0.96, "source": "guided", "confirmed": true},
+    {"id": "B0", "type": "observation", "text": "Rollback restored service.", "evidence_refs": ["E4"], "depends_on": [], "confidence": 0.95, "source": "guided", "confirmed": true},
+    {"id": "B2", "type": "assumption", "text": "The rollback itself did not alter any unrelated authentication dependency.", "evidence_refs": [], "depends_on": [], "confidence": 0.6, "source": "guided", "confirmed": true},
+    {"id": "B3", "type": "inference", "text": "The deployment introduced an issuer mismatch in token validation.", "evidence_refs": ["E3"], "depends_on": ["B1", "B2"], "confidence": 0.78, "source": "guided", "confirmed": true},
+    {"id": "B4", "type": "claim", "text": "A deployment-caused issuer mismatch was the primary cause of the outage.", "evidence_refs": [], "depends_on": ["B3"], "confidence": 0.84, "source": "guided", "confirmed": true},
+    {"id": "B5", "type": "claim", "text": "The release process lacked an effective issuer validation check.", "evidence_refs": [], "depends_on": ["B3"], "confidence": 0.55, "source": "guided", "confirmed": true}
+  ]
+}

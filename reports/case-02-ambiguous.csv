@@ -1,0 +1,11 @@
+event_id,kind,case_id,path_a,path_b,unit_a,unit_b,reviewer_decision,relation
+declared_role_divergence:A2:B4,declared_role_divergence,case-02-ambiguous,case-02-path-a,case-02-path-b,A2,B4,related,
+divergent_conclusion_shared_evidence:A4:B3,divergent_conclusion_shared_evidence,case-02-ambiguous,case-02-path-a,case-02-path-b,A4,B3,related,contradiction
+divergent_evidence_basis:A3:B2,divergent_evidence_basis,case-02-ambiguous,case-02-path-a,case-02-path-b,A3,B2,related,
+evidence_used_one_side_only:E1,evidence_used_one_side_only,case-02-ambiguous,case-02-path-a,case-02-path-b,,,,
+evidence_used_one_side_only:E3,evidence_used_one_side_only,case-02-ambiguous,case-02-path-a,case-02-path-b,,,,
+evidence_used_one_side_only:E4,evidence_used_one_side_only,case-02-ambiguous,case-02-path-a,case-02-path-b,,,,
+reviewer_confirmed_contradiction:A4:B3,reviewer_confirmed_contradiction,case-02-ambiguous,case-02-path-a,case-02-path-b,A4,B3,related,contradiction
+unmatched_unit:-:B1,unmatched_unit,case-02-ambiguous,case-02-path-a,case-02-path-b,,B1,,
+unmatched_unit:A1:-,unmatched_unit,case-02-ambiguous,case-02-path-a,case-02-path-b,A1,,,
+unmatched_unit:A5:-,unmatched_unit,case-02-ambiguous,case-02-path-a,case-02-path-b,A5,,,

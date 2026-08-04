@@ -1,0 +1,443 @@
+{
+  "schema_version": "2.0",
+  "engine_version": "2.0.0",
+  "case_id": "case-02-ambiguous",
+  "question": "Why did the enterprise account most likely churn?",
+  "path_a": "case-02-path-a",
+  "path_b": "case-02-path-b",
+  "analyst_a": "analyst-a",
+  "analyst_b": "analyst-b",
+  "events": [
+    {
+      "id": "declared_role_divergence:A2:B4",
+      "kind": "declared_role_divergence",
+      "schema_version": "2.0",
+      "engine_rule": "declared_role_divergence",
+      "engine_version": "2.0.0",
+      "provenance": {
+        "case_id": "case-02-ambiguous",
+        "path_a": "case-02-path-a",
+        "path_b": "case-02-path-b",
+        "analyst_a": "analyst-a",
+        "analyst_b": "analyst-b"
+      },
+      "reviewer_decision": {
+        "a": "A2",
+        "b": "B4",
+        "decision": "related",
+        "relation": null,
+        "note": "Both touch on external context for the churn, but one is an observation and the other an unstated assumption."
+      },
+      "a": {
+        "id": "A2",
+        "type": "observation",
+        "text": "A cheaper competitor product appeared shortly before churn.",
+        "confidence": 0.9,
+        "evidence_refs": [
+          "E4"
+        ],
+        "depends_on": []
+      },
+      "b": {
+        "id": "B4",
+        "type": "assumption",
+        "text": "The exit survey response reflects the account's real priority ordering and is not just polite phrasing.",
+        "confidence": 0.55,
+        "evidence_refs": [],
+        "depends_on": []
+      },
+      "details": {
+        "type_a": "observation",
+        "type_b": "assumption"
+      }
+    },
+    {
+      "id": "divergent_conclusion_shared_evidence:A4:B3",
+      "kind": "divergent_conclusion_shared_evidence",
+      "schema_version": "2.0",
+      "engine_rule": "divergent_conclusion_shared_evidence",
+      "engine_version": "2.0.0",
+      "provenance": {
+        "case_id": "case-02-ambiguous",
+        "path_a": "case-02-path-a",
+        "path_b": "case-02-path-b",
+        "analyst_a": "analyst-a",
+        "analyst_b": "analyst-b"
+      },
+      "reviewer_decision": {
+        "a": "A4",
+        "b": "B3",
+        "decision": "related",
+        "relation": "contradiction",
+        "note": "A4 asserts price was the primary driver; B3 explicitly asserts price was secondary and support was primary. Both cannot be the primary driver at once."
+      },
+      "a": {
+        "id": "A4",
+        "type": "claim",
+        "text": "Price was the primary driver of churn.",
+        "confidence": 0.7,
+        "evidence_refs": [
+          "E2"
+        ],
+        "depends_on": [
+          "A3"
+        ]
+      },
+      "b": {
+        "id": "B3",
+        "type": "claim",
+        "text": "Deteriorating support quality was the primary driver of churn, and the price increase was a secondary irritant, not the cause.",
+        "confidence": 0.65,
+        "evidence_refs": [
+          "E2"
+        ],
+        "depends_on": [
+          "B2"
+        ]
+      },
+      "details": {
+        "reason": "Reviewer judged these are distinct conclusions, but their declared evidence chains overlap.",
+        "shared_transitive_evidence": [
+          "E2"
+        ]
+      }
+    },
+    {
+      "id": "divergent_evidence_basis:A3:B2",
+      "kind": "divergent_evidence_basis",
+      "schema_version": "2.0",
+      "engine_rule": "divergent_evidence_basis",
+      "engine_version": "2.0.0",
+      "provenance": {
+        "case_id": "case-02-ambiguous",
+        "path_a": "case-02-path-a",
+        "path_b": "case-02-path-b",
+        "analyst_a": "analyst-a",
+        "analyst_b": "analyst-b"
+      },
+      "reviewer_decision": {
+        "a": "A3",
+        "b": "B2",
+        "decision": "related",
+        "relation": null,
+        "note": "Same reasoning role, but built on entirely different evidence."
+      },
+      "a": {
+        "id": "A3",
+        "type": "inference",
+        "text": "The customer had a lower-cost alternative available right when the price rose.",
+        "confidence": 0.75,
+        "evidence_refs": [
+          "E4"
+        ],
+        "depends_on": [
+          "A1",
+          "A2"
+        ]
+      },
+      "b": {
+        "id": "B2",
+        "type": "inference",
+        "text": "Rising ticket volume without resolution likely eroded the account's trust before the renewal conversation happened.",
+        "confidence": 0.68,
+        "evidence_refs": [
+          "E3"
+        ],
+        "depends_on": [
+          "B1"
+        ]
+      },
+      "details": {
+        "evidence_a": [
+          "E4"
+        ],
+        "evidence_b": [
+          "E3"
+        ]
+      }
+    },
+    {
+      "id": "evidence_used_one_side_only:E1",
+      "kind": "evidence_used_one_side_only",
+      "schema_version": "2.0",
+      "engine_rule": "evidence_used_one_side_only",
+      "engine_version": "2.0.0",
+      "provenance": {
+        "case_id": "case-02-ambiguous",
+        "path_a": "case-02-path-a",
+        "path_b": "case-02-path-b",
+        "analyst_a": "analyst-a",
+        "analyst_b": "analyst-b"
+      },
+      "a": null,
+      "b": null,
+      "details": {
+        "evidence_id": "E1",
+        "evidence_text": "The account's contract renewal quote increased 40% year over year.",
+        "used_only_in": "a",
+        "units": [
+          "A1"
+        ]
+      }
+    },
+    {
+      "id": "evidence_used_one_side_only:E3",
+      "kind": "evidence_used_one_side_only",
+      "schema_version": "2.0",
+      "engine_rule": "evidence_used_one_side_only",
+      "engine_version": "2.0.0",
+      "provenance": {
+        "case_id": "case-02-ambiguous",
+        "path_a": "case-02-path-a",
+        "path_b": "case-02-path-b",
+        "analyst_a": "analyst-a",
+        "analyst_b": "analyst-b"
+      },
+      "a": null,
+      "b": null,
+      "details": {
+        "evidence_id": "E3",
+        "evidence_text": "Support ticket volume for this account tripled in the final quarter.",
+        "used_only_in": "b",
+        "units": [
+          "B1",
+          "B2"
+        ]
+      }
+    },
+    {
+      "id": "evidence_used_one_side_only:E4",
+      "kind": "evidence_used_one_side_only",
+      "schema_version": "2.0",
+      "engine_rule": "evidence_used_one_side_only",
+      "engine_version": "2.0.0",
+      "provenance": {
+        "case_id": "case-02-ambiguous",
+        "path_a": "case-02-path-a",
+        "path_b": "case-02-path-b",
+        "analyst_a": "analyst-a",
+        "analyst_b": "analyst-b"
+      },
+      "a": null,
+      "b": null,
+      "details": {
+        "evidence_id": "E4",
+        "evidence_text": "A competitor announced a comparable product at a lower price two months before churn.",
+        "used_only_in": "a",
+        "units": [
+          "A2",
+          "A3"
+        ]
+      }
+    },
+    {
+      "id": "reviewer_confirmed_contradiction:A4:B3",
+      "kind": "reviewer_confirmed_contradiction",
+      "schema_version": "2.0",
+      "engine_rule": "reviewer_confirmed_contradiction",
+      "engine_version": "2.0.0",
+      "provenance": {
+        "case_id": "case-02-ambiguous",
+        "path_a": "case-02-path-a",
+        "path_b": "case-02-path-b",
+        "analyst_a": "analyst-a",
+        "analyst_b": "analyst-b"
+      },
+      "reviewer_decision": {
+        "a": "A4",
+        "b": "B3",
+        "decision": "related",
+        "relation": "contradiction",
+        "note": "A4 asserts price was the primary driver; B3 explicitly asserts price was secondary and support was primary. Both cannot be the primary driver at once."
+      },
+      "a": {
+        "id": "A4",
+        "type": "claim",
+        "text": "Price was the primary driver of churn.",
+        "confidence": 0.7,
+        "evidence_refs": [
+          "E2"
+        ],
+        "depends_on": [
+          "A3"
+        ]
+      },
+      "b": {
+        "id": "B3",
+        "type": "claim",
+        "text": "Deteriorating support quality was the primary driver of churn, and the price increase was a secondary irritant, not the cause.",
+        "confidence": 0.65,
+        "evidence_refs": [
+          "E2"
+        ],
+        "depends_on": [
+          "B2"
+        ]
+      },
+      "details": {
+        "shared_evidence": [
+          "E2"
+        ]
+      }
+    },
+    {
+      "id": "unmatched_unit:-:B1",
+      "kind": "unmatched_unit",
+      "schema_version": "2.0",
+      "engine_rule": "unmatched_unit",
+      "engine_version": "2.0.0",
+      "provenance": {
+        "case_id": "case-02-ambiguous",
+        "path_a": "case-02-path-a",
+        "path_b": "case-02-path-b",
+        "analyst_a": "analyst-a",
+        "analyst_b": "analyst-b"
+      },
+      "reviewer_decision": null,
+      "a": null,
+      "b": {
+        "id": "B1",
+        "type": "observation",
+        "text": "Support ticket volume tripled in the account's final quarter.",
+        "confidence": 0.95,
+        "evidence_refs": [
+          "E3"
+        ],
+        "depends_on": []
+      },
+      "details": {
+        "side": "b",
+        "evidence_refs": [
+          "E3"
+        ]
+      }
+    },
+    {
+      "id": "unmatched_unit:A1:-",
+      "kind": "unmatched_unit",
+      "schema_version": "2.0",
+      "engine_rule": "unmatched_unit",
+      "engine_version": "2.0.0",
+      "provenance": {
+        "case_id": "case-02-ambiguous",
+        "path_a": "case-02-path-a",
+        "path_b": "case-02-path-b",
+        "analyst_a": "analyst-a",
+        "analyst_b": "analyst-b"
+      },
+      "reviewer_decision": null,
+      "a": {
+        "id": "A1",
+        "type": "observation",
+        "text": "The renewal quote rose sharply just before churn.",
+        "confidence": 0.95,
+        "evidence_refs": [
+          "E1"
+        ],
+        "depends_on": []
+      },
+      "b": null,
+      "details": {
+        "side": "a",
+        "evidence_refs": [
+          "E1"
+        ]
+      }
+    },
+    {
+      "id": "unmatched_unit:A5:-",
+      "kind": "unmatched_unit",
+      "schema_version": "2.0",
+      "engine_rule": "unmatched_unit",
+      "engine_version": "2.0.0",
+      "provenance": {
+        "case_id": "case-02-ambiguous",
+        "path_a": "case-02-path-a",
+        "path_b": "case-02-path-b",
+        "analyst_a": "analyst-a",
+        "analyst_b": "analyst-b"
+      },
+      "reviewer_decision": null,
+      "a": {
+        "id": "A5",
+        "type": "unknown",
+        "text": "It is unknown whether the account would have renewed at the old price even with the competitor offer available.",
+        "confidence": 0.5,
+        "evidence_refs": [],
+        "depends_on": [
+          "A4"
+        ]
+      },
+      "b": null,
+      "details": {
+        "side": "a",
+        "evidence_refs": []
+      }
+    }
+  ],
+  "evidence_usage": [
+    {
+      "id": "E1",
+      "text": "The account's contract renewal quote increased 40% year over year.",
+      "a_units": [
+        "A1"
+      ],
+      "b_units": [],
+      "status": "only_a"
+    },
+    {
+      "id": "E2",
+      "text": "Exit survey response: 'cost no longer matched the value we were getting, and support was slow toward the end.'",
+      "a_units": [
+        "A4"
+      ],
+      "b_units": [
+        "B3"
+      ],
+      "status": "both"
+    },
+    {
+      "id": "E3",
+      "text": "Support ticket volume for this account tripled in the final quarter.",
+      "a_units": [],
+      "b_units": [
+        "B1",
+        "B2"
+      ],
+      "status": "only_b"
+    },
+    {
+      "id": "E4",
+      "text": "A competitor announced a comparable product at a lower price two months before churn.",
+      "a_units": [
+        "A2",
+        "A3"
+      ],
+      "b_units": [],
+      "status": "only_a"
+    }
+  ],
+  "metrics": {
+    "units_a": 5,
+    "units_b": 4,
+    "reviewed_pairs": 3,
+    "same_position_pairs": 0,
+    "related_pairs": 3,
+    "unmatched_a": 2,
+    "unmatched_b": 1,
+    "divergence_events": 10,
+    "undeclared_support_gaps": 0,
+    "evidence_overlap_ratio": {
+      "value": 0.25,
+      "numerator": 1,
+      "denominator": 4,
+      "note": null
+    },
+    "review_coverage_ratio": {
+      "value": 0.6,
+      "numerator": 3,
+      "denominator": 5,
+      "note": null
+    }
+  }
+}

@@ -1,0 +1,301 @@
+{
+  "schema_version": "2.0",
+  "engine_version": "2.0.0",
+  "case_id": "case-01-straightforward",
+  "question": "What most likely caused the authentication outage?",
+  "path_a": "case-01-path-a",
+  "path_b": "case-01-path-b",
+  "analyst_a": "analyst-a",
+  "analyst_b": "analyst-b",
+  "events": [
+    {
+      "id": "convergent_conclusion_different_path:A3:B4",
+      "kind": "convergent_conclusion_different_path",
+      "schema_version": "2.0",
+      "engine_rule": "convergent_conclusion_different_path",
+      "engine_version": "2.0.0",
+      "provenance": {
+        "case_id": "case-01-straightforward",
+        "path_a": "case-01-path-a",
+        "path_b": "case-01-path-b",
+        "analyst_a": "analyst-a",
+        "analyst_b": "analyst-b"
+      },
+      "reviewer_decision": {
+        "a": "A3",
+        "b": "B4",
+        "decision": "same_position",
+        "relation": null,
+        "note": "Same stated conclusion; declared support differs (A cites rollback E4 on the claim itself, B does not)."
+      },
+      "a": {
+        "id": "A3",
+        "type": "claim",
+        "text": "The outage was caused by a bad issuer configuration introduced in the deployment.",
+        "confidence": 0.9,
+        "evidence_refs": [
+          "E4"
+        ],
+        "depends_on": [
+          "A2"
+        ]
+      },
+      "b": {
+        "id": "B4",
+        "type": "claim",
+        "text": "A deployment-caused issuer mismatch was the primary cause of the outage.",
+        "confidence": 0.84,
+        "evidence_refs": [],
+        "depends_on": [
+          "B3"
+        ]
+      },
+      "details": {
+        "reason": "Reviewer judged both units assert the same position, but the declared evidence/dependency chains behind them differ.",
+        "evidence_only_in_a": [
+          "E4"
+        ],
+        "evidence_only_in_b": []
+      }
+    },
+    {
+      "id": "divergent_interpretation:A1:B1",
+      "kind": "divergent_interpretation",
+      "schema_version": "2.0",
+      "engine_rule": "divergent_interpretation",
+      "engine_version": "2.0.0",
+      "provenance": {
+        "case_id": "case-01-straightforward",
+        "path_a": "case-01-path-a",
+        "path_b": "case-01-path-b",
+        "analyst_a": "analyst-a",
+        "analyst_b": "analyst-b"
+      },
+      "reviewer_decision": {
+        "a": "A1",
+        "b": "B1",
+        "decision": "related",
+        "relation": null,
+        "note": "Same timeline observation; B does not fold in the rollback evidence here."
+      },
+      "a": {
+        "id": "A1",
+        "type": "observation",
+        "text": "Failures began one minute after the configuration deployment completed.",
+        "confidence": 0.98,
+        "evidence_refs": [
+          "E1",
+          "E2"
+        ],
+        "depends_on": []
+      },
+      "b": {
+        "id": "B1",
+        "type": "observation",
+        "text": "The outage closely followed the deployment.",
+        "confidence": 0.96,
+        "evidence_refs": [
+          "E1",
+          "E2"
+        ],
+        "depends_on": []
+      },
+      "details": {
+        "confidence_delta": 0.02,
+        "shared_evidence": [
+          "E1",
+          "E2"
+        ]
+      }
+    },
+    {
+      "id": "unmatched_unit:-:B0",
+      "kind": "unmatched_unit",
+      "schema_version": "2.0",
+      "engine_rule": "unmatched_unit",
+      "engine_version": "2.0.0",
+      "provenance": {
+        "case_id": "case-01-straightforward",
+        "path_a": "case-01-path-a",
+        "path_b": "case-01-path-b",
+        "analyst_a": "analyst-a",
+        "analyst_b": "analyst-b"
+      },
+      "reviewer_decision": null,
+      "a": null,
+      "b": {
+        "id": "B0",
+        "type": "observation",
+        "text": "Rollback restored service.",
+        "confidence": 0.95,
+        "evidence_refs": [
+          "E4"
+        ],
+        "depends_on": []
+      },
+      "details": {
+        "side": "b",
+        "evidence_refs": [
+          "E4"
+        ]
+      }
+    },
+    {
+      "id": "unmatched_unit:-:B2",
+      "kind": "unmatched_unit",
+      "schema_version": "2.0",
+      "engine_rule": "unmatched_unit",
+      "engine_version": "2.0.0",
+      "provenance": {
+        "case_id": "case-01-straightforward",
+        "path_a": "case-01-path-a",
+        "path_b": "case-01-path-b",
+        "analyst_a": "analyst-a",
+        "analyst_b": "analyst-b"
+      },
+      "reviewer_decision": null,
+      "a": null,
+      "b": {
+        "id": "B2",
+        "type": "assumption",
+        "text": "The rollback itself did not alter any unrelated authentication dependency.",
+        "confidence": 0.6,
+        "evidence_refs": [],
+        "depends_on": []
+      },
+      "details": {
+        "side": "b",
+        "evidence_refs": []
+      }
+    },
+    {
+      "id": "unmatched_unit:-:B5",
+      "kind": "unmatched_unit",
+      "schema_version": "2.0",
+      "engine_rule": "unmatched_unit",
+      "engine_version": "2.0.0",
+      "provenance": {
+        "case_id": "case-01-straightforward",
+        "path_a": "case-01-path-a",
+        "path_b": "case-01-path-b",
+        "analyst_a": "analyst-a",
+        "analyst_b": "analyst-b"
+      },
+      "reviewer_decision": null,
+      "a": null,
+      "b": {
+        "id": "B5",
+        "type": "claim",
+        "text": "The release process lacked an effective issuer validation check.",
+        "confidence": 0.55,
+        "evidence_refs": [],
+        "depends_on": [
+          "B3"
+        ]
+      },
+      "details": {
+        "side": "b",
+        "evidence_refs": []
+      }
+    },
+    {
+      "id": "unmatched_unit:A4:-",
+      "kind": "unmatched_unit",
+      "schema_version": "2.0",
+      "engine_rule": "unmatched_unit",
+      "engine_version": "2.0.0",
+      "provenance": {
+        "case_id": "case-01-straightforward",
+        "path_a": "case-01-path-a",
+        "path_b": "case-01-path-b",
+        "analyst_a": "analyst-a",
+        "analyst_b": "analyst-b"
+      },
+      "reviewer_decision": null,
+      "a": {
+        "id": "A4",
+        "type": "unknown",
+        "text": "It is unknown why pre-deployment validation did not catch the issuer mismatch.",
+        "confidence": 0.75,
+        "evidence_refs": [],
+        "depends_on": [
+          "A3"
+        ]
+      },
+      "b": null,
+      "details": {
+        "side": "a",
+        "evidence_refs": []
+      }
+    }
+  ],
+  "evidence_usage": [
+    {
+      "id": "E1",
+      "text": "Authentication failures began at 14:02 UTC.",
+      "a_units": [
+        "A1"
+      ],
+      "b_units": [
+        "B1"
+      ],
+      "status": "both"
+    },
+    {
+      "id": "E2",
+      "text": "A configuration deployment completed at 14:01 UTC.",
+      "a_units": [
+        "A1"
+      ],
+      "b_units": [
+        "B1"
+      ],
+      "status": "both"
+    },
+    {
+      "id": "E3",
+      "text": "Token validation errors reported an unexpected issuer.",
+      "a_units": [
+        "A2"
+      ],
+      "b_units": [
+        "B3"
+      ],
+      "status": "both"
+    },
+    {
+      "id": "E4",
+      "text": "Rolling back the deployment restored service at 14:19 UTC.",
+      "a_units": [
+        "A3"
+      ],
+      "b_units": [
+        "B0"
+      ],
+      "status": "both"
+    }
+  ],
+  "metrics": {
+    "units_a": 4,
+    "units_b": 6,
+    "reviewed_pairs": 3,
+    "same_position_pairs": 2,
+    "related_pairs": 1,
+    "unmatched_a": 1,
+    "unmatched_b": 3,
+    "divergence_events": 6,
+    "undeclared_support_gaps": 0,
+    "evidence_overlap_ratio": {
+      "value": 1,
+      "numerator": 4,
+      "denominator": 4,
+      "note": null
+    },
+    "review_coverage_ratio": {
+      "value": 0.5,
+      "numerator": 3,
+      "denominator": 6,
+      "note": null
+    }
+  }
+}

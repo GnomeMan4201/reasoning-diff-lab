@@ -1,0 +1,15 @@
+{
+  "case_id": "case-01-straightforward",
+  "title": "Authentication outage (straightforward)",
+  "research_question": "What most likely caused the authentication outage?",
+  "difficulty": "straightforward",
+  "analyst_instructions": "Read the evidence packet only. Do not discuss with the other analyst. Record your reasoning as structured units (Entry Mode A) or as prose you then structure yourself (Entry Mode B). State your confidence for each inference/claim. Log your start and end time.",
+  "reviewer_instructions": "You did not author either path. Review candidate matches under the review mode assigned for this session (blind / suggested_hidden_score / suggested_visible_score). Confirm, reject, or add matches manually. Only mark a relation as 'contradiction' if the two units cannot both be true. Grade every generated event using docs/SCORING_RUBRIC.md before seeing this case's design notes.",
+  "baseline_prose_instructions": "For the baseline condition, give the reviewer only the two analysts' raw prose write-ups (no structured units, no candidate matches, no report). Ask them to list differences they consider important within a fixed time box, then time them.",
+  "expected_methodological_risks": [
+    "This case is intentionally low-ambiguity: if useful precision is not high here, it is unlikely to be high on harder cases.",
+    "A near-miss risk is that both analysts converge so closely that there is nothing to compare — that is itself a valid, reportable outcome, not a failure of the case design."
+  ],
+  "has_designed_correct_answer": true,
+  "design_note_do_not_show_before_grading": "The case is designed so that both analysts should converge on 'deployment-caused issuer mismatch' as the proximate cause, but with genuinely different declared support: Analyst A ties the claim to the rollback evidence (E4), Analyst B does not cite E4 on the claim itself. This is a real, intentional 'convergent_conclusion_different_path' scenario, not a forced disagreement."
+}

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reasoning Diff Lab</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header>
+  <h1>Reasoning Diff Lab</h1>
+  <p class="tagline">A pilot instrument for one question: does comparing two independent reasoning paths surface useful, non-obvious divergences? <a href="#" id="whatIsThisLink">What is this?</a></p>
+</header>
+
+<dialog id="whatIsThisDialog">
+  <h2>What this is — and is not</h2>
+  <ul>
+    <li>This is <strong>pilot-ready but empirically unvalidated</strong>. No claim is made that it works yet.</li>
+    <li>It does not determine truth, rank analysts, or infer contradictions from wording.</li>
+    <li>Every automatic suggestion is a <strong>proposal</strong> a human must confirm.</li>
+  </ul>
+  <button id="closeWhatIsThis">Close</button>
+</dialog>
+
+<main id="main">
+  <nav class="steps" aria-label="Workflow steps">
+    <button data-step="setup" class="step active">1. Setup</button>
+    <button data-step="entry" class="step">2. Analyst Entry</button>
+    <button data-step="review" class="step">3. Reviewer Matching</button>
+    <button data-step="results" class="step">4. Results</button>
+  </nav>
+
+  <section data-panel="setup" class="panel active">
+    <h2>Setup</h2>
+    <label for="caseSelect">Case</label>
+    <select id="caseSelect">
+      <option value="case-01-straightforward">Case 1 — Straightforward</option>
+      <option value="case-02-ambiguous">Case 2 — Ambiguous</option>
+      <option value="case-03-noisy">Case 3 — Noisy / incomplete</option>
+    </select>
+    <div id="caseSummary" class="case-summary" aria-live="polite"></div>
+
+    <label for="roleSelect">Your role right now</label>
+    <select id="roleSelect">
+      <option value="analyst_a">Analyst A</option>
+      <option value="analyst_b">Analyst B</option>
+      <option value="reviewer">Reviewer</option>
+    </select>
+
+    <label for="reviewModeSelect">Reviewer matching mode (facilitator sets this per session — see PILOT_RUNBOOK.md)</label>
+    <select id="reviewModeSelect">
+      <option value="blind">Blind — no suggestions shown</option>
+      <option value="suggested_hidden_score">Suggested — scores hidden</option>
+      <option value="suggested_visible_score">Suggested — scores visible</option>
+    </select>
+
+    <button id="loadDemoBtn">Load a completed demo (case 1)</button>
+    <p class="hint">Loads pre-filled paths so you can see the whole flow before running a real session.</p>
+  </section>
+
+  <section data-panel="entry" class="panel">
+    <h2>Analyst Entry</h2>
+    <div class="entry-mode-toggle" role="tablist" aria-label="Entry mode">
+      <button role="tab" aria-selected="true" data-mode="guided" class="mode-tab active">A. Guided structured entry</button>
+      <button role="tab" aria-selected="false" data-mode="prose" class="mode-tab">B. Prose-first, then structure</button>
+    </div>
+
+    <div data-mode-panel="guided" class="mode-panel active">
+      <p class="hint">Add one reasoning unit at a time. Plain-language labels; you don't need to know any formal terms.</p>
+      <div id="guidedUnits"></div>
+      <button id="addUnitBtn">+ Add a reasoning unit</button>
+    </div>
+
+    <div data-mode-panel="prose" class="mode-panel">
+      <label for="proseInput">Write your analysis as normal prose</label>
+      <textarea id="proseInput" rows="8" placeholder="Write freely. One sentence per idea works best."></textarea>
+      <button id="splitProseBtn">Suggest a structure from my prose</button>
+      <p class="hint">Nothing here uses AI — it's a fixed set of keyword rules, entirely offline. Every suggested unit stays editable, and none of it is used until you explicitly confirm each one below.</p>
+      <div id="draftUnits"></div>
+    </div>
+
+    <div class="entry-stats" aria-live="polite" id="entryStats"></div>
+    <button id="submitPathBtn">Save my path</button>
+  </section>
+
+  <section data-panel="review" class="panel">
+    <h2>Reviewer Matching</h2>
+    <p class="hint" id="reviewModeHint"></p>
+    <div id="matchList"></div>
+    <button id="addManualMatchBtn">+ Add a manual match</button>
+    <button id="runCompareBtn">Generate report</button>
+  </section>
+
+  <section data-panel="results" class="panel">
+    <h2>Results</h2>
+    <div id="metrics" class="metrics-grid"></div>
+    <h3>Observed Divergence Events</h3>
+    <div id="events"></div>
+    <h3>Evidence Usage</h3>
+    <table id="evidenceTable"><thead><tr><th>Evidence</th><th>Status</th><th>A units</th><th>B units</th></tr></thead><tbody></tbody></table>
+    <h3>Exports</h3>
+    <button id="exportJsonBtn">Download JSON</button>
+    <button id="exportMdBtn">Download Markdown</button>
+    <button id="exportCsvBtn">Download CSV</button>
+    <button id="exportSessionBtn">Download session log (timing + logging data)</button>
+  </section>
+
+  <div id="errorBox" role="alert" aria-live="assertive"></div>
+</main>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

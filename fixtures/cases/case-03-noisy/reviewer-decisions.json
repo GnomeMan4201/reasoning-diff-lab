@@ -1,0 +1,10 @@
+{
+  "case_id": "case-03-noisy",
+  "reviewer_id": "reviewer-1",
+  "review_mode": "blind",
+  "decisions": [
+    {"a": "A1", "b": "B1", "decision": "same_position", "match_source": "manual", "confidence": "high"},
+    {"a": "A3", "b": "B2", "decision": "same_position", "match_source": "manual", "confidence": "high"},
+    {"a": "A4", "b": "B3", "decision": "related", "relation": "contradiction", "match_source": "manual", "confidence": "high", "note": "Two different primary-cause claims for the same spike; A4 also has no declared support at all."}
+  ]
+}

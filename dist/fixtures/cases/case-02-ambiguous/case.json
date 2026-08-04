@@ -1,0 +1,15 @@
+{
+  "case_id": "case-02-ambiguous",
+  "title": "Enterprise account churn (ambiguous)",
+  "research_question": "Why did the enterprise account most likely churn?",
+  "difficulty": "ambiguous",
+  "analyst_instructions": "The evidence packet supports more than one defensible account of the cause. Do not try to guess a single intended answer. Record what you actually believe and why, including any unknowns.",
+  "reviewer_instructions": "Expect at least one pair of units where the two analysts assert genuinely incompatible causes. Only tag 'contradiction' if both cannot be true simultaneously given the evidence — a difference in emphasis is not a contradiction.",
+  "baseline_prose_instructions": "Same as Case 1: give the reviewer only the raw prose write-ups for the baseline condition.",
+  "expected_methodological_risks": [
+    "Reviewers may be tempted to resolve the ambiguity themselves rather than report it — the rubric term for this is 'accurate but low value' only if both units are individually true; if the two claims cannot both be true, it is a contradiction, not a low-value event.",
+    "This case has no single correct answer. Do not grade divergences against a hidden key."
+  ],
+  "has_designed_correct_answer": false,
+  "design_note_do_not_show_before_grading": "Analyst A's evidence trail leans toward a pricing-driven churn; Analyst B's leans toward a support-quality-driven churn. Both use E2 (the exit survey). Both cite the same evidence for opposite proximate causes — this is the intended 'divergent_conclusion_shared_evidence' and, if the reviewer judges the two claims mutually exclusive, a genuine reviewer-confirmed contradiction."
+}

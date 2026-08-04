@@ -1,0 +1,18 @@
+{
+  "id": "case-03-path-b",
+  "case_id": "case-03-noisy",
+  "analyst_id": "analyst-b",
+  "question": "What most likely explains the spike in refund requests last week?",
+  "evidence": [
+    {"id": "E1", "text": "The primary shipping carrier reported regional delivery delays starting Monday."},
+    {"id": "E2", "text": "Refund requests citing 'item never arrived' rose 3x starting Wednesday."},
+    {"id": "E3", "text": "Overall order volume was flat week over week."},
+    {"id": "E4", "text": "A billing-page redesign shipped on Tuesday of the same week."}
+  ],
+  "units": [
+    {"id": "B1", "type": "observation", "text": "Carrier delays began two days before the refund spike, and total orders did not change.", "evidence_refs": ["E1", "E2", "E3"], "depends_on": [], "confidence": 0.92, "source": "guided", "confirmed": true},
+    {"id": "B2", "type": "inference", "text": "The delay in delivery is the more likely trigger for 'never arrived' refunds than any unrelated site change.", "evidence_refs": [], "depends_on": ["B1"], "confidence": 0.83, "source": "guided", "confirmed": true},
+    {"id": "B3", "type": "claim", "text": "The refund spike is most likely explained by the shipping-carrier delay.", "evidence_refs": [], "depends_on": ["B2"], "confidence": 0.78, "source": "guided", "confirmed": true},
+    {"id": "B4", "type": "unknown", "text": "It is unknown how many affected customers will re-order once delivery catches up versus stay churned.", "evidence_refs": [], "depends_on": ["B3"], "confidence": 0.35, "source": "guided", "confirmed": true}
+  ]
+}

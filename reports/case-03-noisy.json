@@ -1,0 +1,284 @@
+{
+  "schema_version": "2.0",
+  "engine_version": "2.0.0",
+  "case_id": "case-03-noisy",
+  "question": "What most likely explains the spike in refund requests last week?",
+  "path_a": "case-03-path-a",
+  "path_b": "case-03-path-b",
+  "analyst_a": "analyst-a",
+  "analyst_b": "analyst-b",
+  "events": [
+    {
+      "id": "dependency_divergence:A4:B3",
+      "kind": "dependency_divergence",
+      "schema_version": "2.0",
+      "engine_rule": "dependency_divergence",
+      "engine_version": "2.0.0",
+      "provenance": {
+        "case_id": "case-03-noisy",
+        "path_a": "case-03-path-a",
+        "path_b": "case-03-path-b",
+        "analyst_a": "analyst-a",
+        "analyst_b": "analyst-b"
+      },
+      "reviewer_decision": {
+        "a": "A4",
+        "b": "B3",
+        "decision": "related",
+        "relation": "contradiction",
+        "note": "Two different primary-cause claims for the same spike; A4 also has no declared support at all."
+      },
+      "a": {
+        "id": "A4",
+        "type": "claim",
+        "text": "The billing redesign is causing the refund spike.",
+        "confidence": 0.6,
+        "evidence_refs": [],
+        "depends_on": []
+      },
+      "b": {
+        "id": "B3",
+        "type": "claim",
+        "text": "The refund spike is most likely explained by the shipping-carrier delay.",
+        "confidence": 0.78,
+        "evidence_refs": [],
+        "depends_on": [
+          "B2"
+        ]
+      },
+      "details": {
+        "declared_dependency_roles_a": [],
+        "declared_dependency_roles_b": [
+          "inference"
+        ]
+      }
+    },
+    {
+      "id": "reviewer_confirmed_contradiction:A4:B3",
+      "kind": "reviewer_confirmed_contradiction",
+      "schema_version": "2.0",
+      "engine_rule": "reviewer_confirmed_contradiction",
+      "engine_version": "2.0.0",
+      "provenance": {
+        "case_id": "case-03-noisy",
+        "path_a": "case-03-path-a",
+        "path_b": "case-03-path-b",
+        "analyst_a": "analyst-a",
+        "analyst_b": "analyst-b"
+      },
+      "reviewer_decision": {
+        "a": "A4",
+        "b": "B3",
+        "decision": "related",
+        "relation": "contradiction",
+        "note": "Two different primary-cause claims for the same spike; A4 also has no declared support at all."
+      },
+      "a": {
+        "id": "A4",
+        "type": "claim",
+        "text": "The billing redesign is causing the refund spike.",
+        "confidence": 0.6,
+        "evidence_refs": [],
+        "depends_on": []
+      },
+      "b": {
+        "id": "B3",
+        "type": "claim",
+        "text": "The refund spike is most likely explained by the shipping-carrier delay.",
+        "confidence": 0.78,
+        "evidence_refs": [],
+        "depends_on": [
+          "B2"
+        ]
+      },
+      "details": {
+        "shared_evidence": []
+      }
+    },
+    {
+      "id": "undeclared_support_gap:a:A4",
+      "kind": "undeclared_support_gap",
+      "schema_version": "2.0",
+      "engine_rule": "undeclared_support_gap",
+      "engine_version": "2.0.0",
+      "provenance": {
+        "case_id": "case-03-noisy",
+        "path_a": "case-03-path-a",
+        "path_b": "case-03-path-b",
+        "analyst_a": "analyst-a",
+        "analyst_b": "analyst-b"
+      },
+      "reviewer_decision": null,
+      "a": {
+        "id": "A4",
+        "type": "claim",
+        "text": "The billing redesign is causing the refund spike.",
+        "confidence": 0.6,
+        "evidence_refs": [],
+        "depends_on": []
+      },
+      "b": null,
+      "details": {
+        "side": "a",
+        "reason": "This inference or claim declares no evidence reference and no dependency. This is a syntactic observation about what was declared, not a judgment that the reasoning is wrong or unsupported in reality."
+      }
+    },
+    {
+      "id": "unmatched_unit:-:B4",
+      "kind": "unmatched_unit",
+      "schema_version": "2.0",
+      "engine_rule": "unmatched_unit",
+      "engine_version": "2.0.0",
+      "provenance": {
+        "case_id": "case-03-noisy",
+        "path_a": "case-03-path-a",
+        "path_b": "case-03-path-b",
+        "analyst_a": "analyst-a",
+        "analyst_b": "analyst-b"
+      },
+      "reviewer_decision": null,
+      "a": null,
+      "b": {
+        "id": "B4",
+        "type": "unknown",
+        "text": "It is unknown how many affected customers will re-order once delivery catches up versus stay churned.",
+        "confidence": 0.35,
+        "evidence_refs": [],
+        "depends_on": [
+          "B3"
+        ]
+      },
+      "details": {
+        "side": "b",
+        "evidence_refs": []
+      }
+    },
+    {
+      "id": "unmatched_unit:A2:-",
+      "kind": "unmatched_unit",
+      "schema_version": "2.0",
+      "engine_rule": "unmatched_unit",
+      "engine_version": "2.0.0",
+      "provenance": {
+        "case_id": "case-03-noisy",
+        "path_a": "case-03-path-a",
+        "path_b": "case-03-path-b",
+        "analyst_a": "analyst-a",
+        "analyst_b": "analyst-b"
+      },
+      "reviewer_decision": null,
+      "a": {
+        "id": "A2",
+        "type": "observation",
+        "text": "Order volume itself did not change.",
+        "confidence": 0.9,
+        "evidence_refs": [
+          "E3"
+        ],
+        "depends_on": []
+      },
+      "b": null,
+      "details": {
+        "side": "a",
+        "evidence_refs": [
+          "E3"
+        ]
+      }
+    },
+    {
+      "id": "unmatched_unit:A5:-",
+      "kind": "unmatched_unit",
+      "schema_version": "2.0",
+      "engine_rule": "unmatched_unit",
+      "engine_version": "2.0.0",
+      "provenance": {
+        "case_id": "case-03-noisy",
+        "path_a": "case-03-path-a",
+        "path_b": "case-03-path-b",
+        "analyst_a": "analyst-a",
+        "analyst_b": "analyst-b"
+      },
+      "reviewer_decision": null,
+      "a": {
+        "id": "A5",
+        "type": "unknown",
+        "text": "It is unknown whether some fraction of the 'never arrived' refunds are unrelated to the carrier delay.",
+        "confidence": 0.4,
+        "evidence_refs": [],
+        "depends_on": [
+          "A3"
+        ]
+      },
+      "b": null,
+      "details": {
+        "side": "a",
+        "evidence_refs": []
+      }
+    }
+  ],
+  "evidence_usage": [
+    {
+      "id": "E1",
+      "text": "The primary shipping carrier reported regional delivery delays starting Monday.",
+      "a_units": [
+        "A1"
+      ],
+      "b_units": [
+        "B1"
+      ],
+      "status": "both"
+    },
+    {
+      "id": "E2",
+      "text": "Refund requests citing 'item never arrived' rose 3x starting Wednesday.",
+      "a_units": [
+        "A1"
+      ],
+      "b_units": [
+        "B1"
+      ],
+      "status": "both"
+    },
+    {
+      "id": "E3",
+      "text": "Overall order volume was flat week over week.",
+      "a_units": [
+        "A2"
+      ],
+      "b_units": [
+        "B1"
+      ],
+      "status": "both"
+    },
+    {
+      "id": "E4",
+      "text": "A billing-page redesign shipped on Tuesday of the same week.",
+      "a_units": [],
+      "b_units": [],
+      "status": "unused"
+    }
+  ],
+  "metrics": {
+    "units_a": 5,
+    "units_b": 4,
+    "reviewed_pairs": 3,
+    "same_position_pairs": 2,
+    "related_pairs": 1,
+    "unmatched_a": 2,
+    "unmatched_b": 1,
+    "divergence_events": 5,
+    "undeclared_support_gaps": 1,
+    "evidence_overlap_ratio": {
+      "value": 1,
+      "numerator": 3,
+      "denominator": 3,
+      "note": null
+    },
+    "review_coverage_ratio": {
+      "value": 0.6,
+      "numerator": 3,
+      "denominator": 5,
+      "note": null
+    }
+  }
+}

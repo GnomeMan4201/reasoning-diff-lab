@@ -1,0 +1,19 @@
+{
+  "id": "case-03-path-a",
+  "case_id": "case-03-noisy",
+  "analyst_id": "analyst-a",
+  "question": "What most likely explains the spike in refund requests last week?",
+  "evidence": [
+    {"id": "E1", "text": "The primary shipping carrier reported regional delivery delays starting Monday."},
+    {"id": "E2", "text": "Refund requests citing 'item never arrived' rose 3x starting Wednesday."},
+    {"id": "E3", "text": "Overall order volume was flat week over week."},
+    {"id": "E4", "text": "A billing-page redesign shipped on Tuesday of the same week."}
+  ],
+  "units": [
+    {"id": "A1", "type": "observation", "text": "Delivery delays began Monday and 'never arrived' refunds rose starting Wednesday.", "evidence_refs": ["E1", "E2"], "depends_on": [], "confidence": 0.9, "source": "guided", "confirmed": true},
+    {"id": "A2", "type": "observation", "text": "Order volume itself did not change.", "evidence_refs": ["E3"], "depends_on": [], "confidence": 0.9, "source": "guided", "confirmed": true},
+    {"id": "A3", "type": "inference", "text": "The refund spike tracks the delivery delay rather than a change in ordering behavior.", "evidence_refs": [], "depends_on": ["A1", "A2"], "confidence": 0.8, "source": "guided", "confirmed": true},
+    {"id": "A4", "type": "claim", "text": "The billing redesign is causing the refund spike.", "evidence_refs": [], "depends_on": [], "confidence": 0.6, "source": "guided", "confirmed": true},
+    {"id": "A5", "type": "unknown", "text": "It is unknown whether some fraction of the 'never arrived' refunds are unrelated to the carrier delay.", "evidence_refs": [], "depends_on": ["A3"], "confidence": 0.4, "source": "guided", "confirmed": true}
+  ]
+}
