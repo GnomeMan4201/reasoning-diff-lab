@@ -1,0 +1,38 @@
+name: Import complete v2.0.0 release
+
+on:
+  push:
+    paths:
+      - 'reasoning-diff-lab-v2.0.0.zip'
+
+permissions:
+  contents: write
+
+jobs:
+  import-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Verify archive exists
+        run: |
+          test -f reasoning-diff-lab-v2.0.0.zip
+
+      - name: Unpack release
+        run: |
+          rm -rf .release-import
+          mkdir .release-import
+          unzip -q reasoning-diff-lab-v2.0.0.zip -d .release-import
+          test -d .release-import/reasoning-diff-lab
+          cp -a .release-import/reasoning-diff-lab/. ./
+          rm -rf .release-import
+          rm reasoning-diff-lab-v2.0.0.zip
+
+      - name: Commit complete release
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Import complete Reasoning Diff Lab v2.0.0 release'
+          git push
