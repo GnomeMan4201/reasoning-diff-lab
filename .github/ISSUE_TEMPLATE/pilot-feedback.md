@@ -1,6 +1,6 @@
 ---
 name: Pilot feedback
-aabout: Report a completed session, protocol problem, misleading finding, or workflow failure
+about: Report a completed session, protocol problem, misleading finding, or workflow failure
 title: "Pilot feedback: "
 labels: ""
 assignees: "GnomeMan4201"
