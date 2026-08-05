@@ -1,59 +1,63 @@
 # Reviewer Guide
 
-You did not write either reasoning path. Your job is to judge how the two relate, and then
-to judge how useful the tool's report actually was. Both jobs matter.
+You did not write either reasoning path. Your job is to compare them and then judge whether the generated report was useful, misleading, incomplete, or too costly to produce.
 
-## Matching
+## Mandatory order
 
-For each pair the tool shows you (or each pair you add manually), pick one:
+For every pilot case:
 
-- **Same position** — both units assert the same substantive point. This does not require
-  identical wording.
-- **Related, distinct** — the two units are clearly about the same thing but assert
-  different things (a different cause, a different confidence, a different scope).
-- **Unrelated** — no meaningful connection; this pair will not be compared further.
+1. Confirm both frozen analyst paths are available in the reviewer browser.
+2. Receive the downloaded **prose-only baseline packet**.
+3. Review that plain text under the fixed time box and list the important differences you notice.
+4. Give the facilitator the baseline duration.
+5. Only then open **Reviewer Matching**.
 
-If you check **"reviewer-confirmed contradiction,"** you are asserting that both statements
-cannot be true at the same time given the shared evidence — not merely that they disagree in
-emphasis or tone. The tool never guesses this for you; if it's not checked, no contradiction
-event is produced, no matter how the text reads.
+The baseline packet omits unit types, evidence links, dependencies, confidence values, suggestions, and report output. Opening structured review first contaminates the baseline. Report accidental early exposure immediately.
+
+## Matching decisions
+
+For each shown or manually selected pair, choose:
+
+- **Same position:** both units assert the same substantive point; wording may differ.
+- **Related, distinct:** they concern the same subject but assert materially different things.
+- **Unrelated:** there is no meaningful comparison. A suggested pair marked unrelated is logged as rejected.
+
+Mark **reviewer-confirmed contradiction** only when two related statements cannot both be true. Different emphasis, scope, or confidence is not automatically a contradiction. The engine never infers contradiction from wording.
 
 ## Review modes
 
-You may be assigned one of three modes for a given case:
+- **Blind:** no candidate pairs are shown; create matches manually.
+- **Suggested, hidden score:** candidate pairs are shown without a score.
+- **Suggested, visible score:** candidate pairs and the lexical score are shown.
 
-- **Blind**: you see no suggested pairs at all. Match everything manually. This is slower,
-  but it is the condition that tells us whether the suggestion feature is actually helping
-  or just making you faster at rubber-stamping.
-- **Suggested, hidden score**: you see candidate pairs, but not how confident the matcher is.
-- **Suggested, visible score**: you see the pairs and a percentage score.
+The facilitator assigns the mode before the session. Do not change modes based on case performance. A suggestion is a proposal from a simple lexical matcher, not a semantic judgment.
 
-Do not try to "beat" whichever mode you're in — just match as carefully as you would if no
-tool existed. If a suggested pair looks wrong, reject it and match the units yourself; the
-score is a hint from a simple keyword-overlap calculation, not a semantic judgment, and it
-will sometimes be wrong.
+## Generating and grading the report
 
-## Grading
+After completing the matching decisions:
 
-Once the report is generated, grade every event using these six labels — see
-`docs/SCORING_RUBRIC.md` for the full definitions:
+1. Generate the report.
+2. Grade every generated event before group discussion or disclosure of facilitator design notes.
+3. Use the exact labels in `docs/SCORING_RUBRIC.md`:
+   - `useful_nonobvious`
+   - `useful_obvious`
+   - `accurate_low_value`
+   - `misleading`
+   - `wrong`
+4. Separately record every important divergence you believe the report missed.
+5. Complete the post-session questions, including whether suggestions or visible scores affected your decisions.
 
-`useful, non-obvious` · `useful, but obvious` · `accurate, low value` · `misleading` ·
-`wrong` · (separately) `missing` — an important divergence you believe is real that the
-report didn't surface at all.
+Grade bluntly. A misleading or wrong event is useful evidence about the instrument. Do not soften a grade to reward effort.
 
-Grade honestly even if a grade makes the tool look bad. A pilot where every event is
-"useful, non-obvious" is more likely to indicate lenient grading than a strong tool.
+## What the report cannot establish
 
-## Things the report will never tell you
+It cannot tell you:
 
-- Which analyst is more skilled.
-- Whether either analyst's conclusion is actually correct.
-- Whether a "contradiction" you didn't check is secretly there — it only reports what you
-  confirmed.
-- Whether an "Undeclared Support Gap" means the reasoning is bad — it only means no evidence
-  or dependency was declared for that unit. People sometimes have good reasons they simply
-  didn't type in.
+- which analyst is more skilled;
+- which conclusion is true;
+- whether an unchecked contradiction secretly exists;
+- whether an Undeclared Support Gap means the reasoning is bad;
+- whether a lexical suggestion is semantically correct;
+- whether the workflow is worth using again—that is part of your judgment.
 
-If you find yourself wanting the tool to make a judgment call for you, that's useful
-information for the pilot — write it down for the post-session interview.
+Tell the facilitator immediately about confusing language, missing controls, accidental exposure, transfer problems, or pressure to complete a decision you do not believe. Those are pilot findings, not inconveniences to hide.
