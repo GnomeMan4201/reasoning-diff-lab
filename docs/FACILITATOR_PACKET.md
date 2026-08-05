@@ -1,134 +1,134 @@
 # Pilot Facilitator Packet — One-Page Summary
 
-## What you're agreeing to run
+## Purpose
 
-A feasibility test of one research question: *does comparing two independently produced reasoning paths surface non-obvious, useful divergences that a prose-only review misses?* This is a three-case session, approximately 90–120 minutes total. No special expertise is required. The tool runs locally in a browser.
+Run a formative test of one question: does comparing two independently produced reasoning paths reveal useful, non-obvious differences that prose-only review misses, without imposing unacceptable entry or review burden?
 
----
+This is not a validation study. The deliverable is a documented **continue**, **pivot**, **stop**, or **not yet scoreable** decision.
 
-## Participant roles
+## Roles and realistic time
 
-| Role | Count | What they do |
-|---|---|---|
-| **Analyst A** | 1 | Records their reasoning on each case independently |
-| **Analyst B** | 1 | Records their reasoning on the same case independently — no contact with A until both paths are frozen |
-| **Reviewer** | 1 | Did not write either path; matches units across the two paths and grades the report |
-| **Facilitator (you)** | 1 | Starts the server, enforces isolation, holds the timer, administers consent, collects exports |
+| Role | Count | Expected commitment |
+|---|---:|---:|
+| Analyst A | 1 | about 60–90 minutes across training, three cases, handoff, and interview |
+| Analyst B | 1 | about 60–90 minutes across training, three cases, handoff, and interview |
+| Reviewer | 1 | about 90–120 minutes across three baselines, structured review, grading, and interview |
+| Facilitator | 1 | reserve about 2.5–3.5 hours total including setup, transfers, exports, and resets |
 
----
+The roles do not need to remain present for the entire facilitator window. Analysts can complete all frozen paths first; the reviewer can work afterward. A single 90-minute all-role session is not a safe planning assumption.
 
-## Exact time commitment
+## Required setup
 
-| Activity | Estimated time |
-|---|---|
-| Setup and consent | 10 min |
-| Per case: analyst entry (each analyst, independently) | 10–20 min |
-| Per case: reviewer matching and report generation | 10–15 min |
-| Per case: reviewer grading | 5–10 min |
-| Per case: baseline prose review (separate timer) | 10 min |
-| Post-session interview (all participants) | 10–15 min |
-| **Total (3 cases)** | **90–120 min** |
+- Verified frozen `release/v2.0.1` build
+- Node.js 20 or newer
+- `npm run verify` passing
+- Actual host/device arrangement rehearsed
+- Two simultaneous isolated analyst workspaces for protocol-conforming data
+- Private path-transfer and export location
+- Manual timer
+- Primary and backup session dates
 
----
+The default local server is `http://127.0.0.1:4173`. A network-accessible setup requires separate rehearsal and risk review.
 
-## Hardware and access requirements
+## Participant sequence
 
-- One laptop or desktop running Node.js ≥ 20
-- `npm test && npm run build && npm start` in the project directory
-- Browser at `http://localhost:4173` — works on phone too, but a keyboard is faster for entry
-- No internet connection required after startup
-- If analysts are in the same room: two screens, or run two browser tabs on one machine in separate windows
+### Analysts
 
----
+1. Read consent and complete only the separate training demo.
+2. Begin the same pilot case simultaneously in isolated workspaces.
+3. Use the participant-safe evidence packet shown by the interface.
+4. Freeze each path without discussion.
+5. Download the role-labeled path JSON and return control to the facilitator.
+6. Repeat for all three cases.
+7. Complete the analyst interview.
+
+### Reviewer
+
+For each case:
+
+1. Import or confirm both frozen paths.
+2. Download and review the plain prose-only baseline packet first.
+3. Record baseline duration.
+4. Open Reviewer Matching under the preassigned mode.
+5. Confirm, reject, or manually add matches; assess contradiction separately.
+6. Generate the report.
+7. Grade every event before design-note disclosure or group discussion.
+8. Record important divergences the report missed.
+9. Export report and session log.
+
+Then complete the reviewer interview.
+
+## Timing plan
+
+| Work | Typical range |
+|---|---:|
+| Consent and separate demo | 10–15 min |
+| Analyst entry per case, simultaneous | 10–20 min |
+| Baseline review per case | up to 10 min |
+| Tool-assisted matching per case | 10–15 min |
+| Event grading and missing-divergence capture per case | 5–10 min |
+| Interviews and export verification | 15–25 min |
+
+Plan for variation. Setup trouble and long structured entry are findings, not reasons to hide elapsed time.
 
 ## Isolation rules
 
-Before either analyst saves a path for a given case:
+- Analysts receive the same evidence at the same time.
+- No analyst sees the other path before both are frozen.
+- Only `demo-training` is used for training.
+- Reference paths, reviewer decisions, expected risks, and design notes remain protected until grading finishes.
+- Reviewer completes baseline before seeing structured paths or suggestions.
 
-1. Do not let Analyst A and Analyst B discuss the case or see each other's screens.
-2. Do not show either analyst the reviewer's questions or the candidate match list.
-3. Do not reveal the `design_note_do_not_show_before_grading` field in each `case.json` to anyone until after the reviewer has finished grading.
+A single-computer sequential analyst run is a documented protocol deviation and should be treated primarily as an operational or burden rehearsal, not clean evidence for the central claim.
 
-These rules are procedural — the current tool does not enforce them technically.
+## Consent summary
 
----
+Read the full language in `PILOT_RUNBOOK.md`. Participants must understand:
 
-## Evidence packet distribution
+- scenarios are synthetic;
+- timing, edits, decisions, and text are logged locally under role labels;
+- they can stop without giving a reason;
+- withdrawn work is not exported or analyzed;
+- no real client, patient, employer, or case data should be entered.
 
-Each case's evidence is pre-loaded in the tool. Select the case in Setup, select the analyst's role, and the evidence items appear automatically. No files to distribute separately.
+## Exports per case
 
----
+- Analyst A path
+- Analyst B path
+- baseline packet and baseline notes
+- report JSON, Markdown, and CSV
+- session log containing paths, analyst timings, reviewer timings, match logs, and final decisions
+- event grades
+- missing divergences
+- protocol deviations
 
-## Freeze procedure
+Reopen every exported file before changing cases. Preserve untouched originals privately.
 
-When an analyst clicks **"Save my path"** and the tool confirms, that path is saved to `localStorage`. From that point, the analyst should not edit it. Log the time. If a participant asks to edit after saving, log it as a protocol deviation (see below) and allow it — but record the original and revised versions if possible.
+## Counterbalancing
 
----
+| Session | Case 1 | Case 2 | Case 3 |
+|---|---|---|---|
+| 1 | blind | hidden score | visible score |
+| 2 | hidden score | visible score | blind |
+| 3 | visible score | blind | hidden score |
 
-## Reviewer sequence (per case)
+Assign modes before starting and never change them based on observed performance.
 
-1. Baseline condition first: give the reviewer the two analysts' raw prose write-ups (or read their units aloud as plain prose) and time them finding differences, with a 10-minute cap. Record what they found and the time elapsed. Do this **before** they open the tool for that case.
-2. Tool condition: reviewer opens the interface in Reviewer role, matches units under the assigned review mode (see counterbalancing schedule below), and generates the report.
-3. Reviewer grades every event in the generated report using the six-grade rubric in `docs/SCORING_RUBRIC.md`. They also list any important difference they believe is real but was not in the report (`missing_divergences`).
+## Stop conditions
 
-**Counterbalancing schedule (3 cases):**
+Stop or reschedule when:
 
-| Case | Review mode |
-|---|---|
-| case-01-straightforward | blind |
-| case-02-ambiguous | suggested, hidden score |
-| case-03-noisy | suggested, visible score |
+- `npm run verify` fails;
+- participant evidence does not load;
+- path transfer/import fails;
+- reset or exports fail;
+- baseline is contaminated;
+- protected material is exposed;
+- a participant withdraws;
+- privacy or blinding cannot be maintained.
 
-Rotate this assignment across sessions if you run more than one pilot trio.
+Record the failure; do not reconstruct missing data from memory or patch the procedure during the session.
 
----
+## Completion
 
-## Timer and interaction logging
-
-The tool logs entry start and end times, edit counts, and validation errors automatically. Export the session log from the Results screen after each case (**"Download session log"** button). Also log manually:
-- baseline review start and end time per case
-- any deviation from this packet
-
----
-
-## Post-task questionnaire (all participants)
-
-Ask each person, verbally:
-1. Would you use this for real work? (1 = definitely not, 5 = definitely yes)
-2. What made entry harder or easier than writing normal prose?
-3. Was any label or interface element confusing?
-4. (Reviewer only) Did seeing match scores change which pairs you accepted?
-
-Record answers in a shared note; they feed `questionnaires` in the session file.
-
----
-
-## Data retention and consent
-
-Read this aloud before starting:
-
-> "You're helping test a research prototype. Your reasoning and timing will be logged locally on this machine only, tied to a role label, not your name. Nothing is sent anywhere over a network. You can stop at any point without giving a reason — anything you've entered will simply not be exported. Do you agree?"
-
-If anyone declines, do not proceed with them in that role.
-
-Retain exports only as long as needed for analysis. Delete them once the pilot's continue/pivot/stop decision is recorded.
-
----
-
-## Protocol deviations
-
-If anything does not go as written here — a participant saw something they shouldn't, a step was skipped, a path was edited after freezing — log it in the session file as a `protocol_deviation` entry with a brief reason. Do not silently adjust the numbers. Deviations do not have to disqualify a case; they have to be visible.
-
----
-
-## What constitutes pilot completion
-
-The pilot is complete when:
-- All three cases have been run with both analyst paths saved and the reviewer report generated and graded.
-- Baseline review times and findings have been recorded for all three cases.
-- Session logs (timing + match logs) have been exported for all three cases.
-- The post-session interview notes are written down.
-- All exports are merged into a single session file and `npm run analyze -- session.json` has been run.
-- The output of `analyze` has been compared against the continue/pivot/stop criteria in `docs/SCORING_RUBRIC.md` and a decision is recorded with the reason.
-
-That decision — continue, pivot, or stop — is the deliverable of this session.
+The pilot is complete only when all three cases have frozen paths, uncontaminated baseline records, structured reviewer output, event grades, missing-divergence records, questionnaires, private exports, deviations, merged analysis data, and a recorded decision under the predefined rubric.
