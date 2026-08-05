@@ -1,0 +1,14 @@
+{
+  "case_id": "demo-training",
+  "title": "Training demo: delayed nightly report",
+  "research_question": "What most likely caused the nightly report to arrive late?",
+  "difficulty": "demo",
+  "analyst_instructions": "Training only. Use this case to learn the interface; it is not part of the pilot and must not be analyzed as pilot data.",
+  "reviewer_instructions": "Training only. Practice matching and report generation without recording these results as pilot evidence.",
+  "evidence": [
+    {"id": "D1", "text": "The report job was scheduled to start at 02:00."},
+    {"id": "D2", "text": "The upstream input file arrived at 02:23."},
+    {"id": "D3", "text": "Processing took four minutes, matching its normal duration."},
+    {"id": "D4", "text": "The completed report was delivered at 02:28."}
+  ]
+}
