@@ -4,17 +4,19 @@ Audience: the pilot facilitator. When this document is ambiguous, record a proto
 
 ## Before scheduling
 
-1. Confirm two independent analysts, one reviewer who authored neither path, one facilitator, and 90–120 minutes.
-2. Use the frozen `release/v2.0.1` branch.
-3. On the actual host machine, run `npm run verify` and complete all 16 cold-rehearsal steps in `docs/PRE_PILOT_READINESS_AUDIT.md`.
-4. Prepare two analyst workspaces capable of beginning from the same evidence at the same time. Separate devices are preferred.
-5. Decide and record all three review modes before participant work begins.
-6. Prepare private storage, a manual timer, the scoring rubric, and the private session record.
-7. Read the consent language below and obtain agreement before logging begins.
+1. Confirm two independent analysts, one reviewer who authored neither path, and one facilitator.
+2. Tell volunteers the realistic role-specific commitments: about 60–90 minutes per analyst and 90–120 minutes for the reviewer.
+3. Reserve 2.5–3.5 hours of facilitator time across setup, analyst work, transfers, reviewer work, interviews, exports, and resets. The work may be split into role-specific blocks.
+4. Use the frozen `release/v2.0.1` branch.
+5. On the actual host machine, run `npm run verify` and complete all 16 cold-rehearsal steps in `docs/PRE_PILOT_READINESS_AUDIT.md`.
+6. Prepare two analyst workspaces capable of beginning from the same evidence at the same time. Separate devices are preferred.
+7. Decide and record all three review modes before participant work begins.
+8. Prepare private storage, a manual timer, the scoring rubric, and the private session record.
+9. Read the consent language below and obtain agreement before logging begins.
 
 ## Consent language
 
-> You're being asked to take part in a short pilot test of a research prototype. You will either write a short analysis of a synthetic scenario or review two people's analyses and note where they differ. The full session is expected to take roughly 90–120 minutes. Your timing, edits, decisions, and typed responses will be logged locally under a role label such as Analyst A, Analyst B, or Reviewer rather than your name unless you separately agree to be named for follow-up. The tool does not send your typed reasoning to an external service. You may stop at any point without giving a reason. If you withdraw, your session data will not be exported or analyzed. Do you agree to take part on these terms?
+> You're being asked to take part in a short pilot test of a research prototype. Analysts should expect about 60–90 minutes across training, three synthetic cases, path handoff, and a short interview. The reviewer should expect about 90–120 minutes across baseline reviews, structured comparison, grading, and an interview. The facilitator may schedule these as separate role-specific blocks. Your timing, edits, decisions, and typed responses will be logged locally under a role label such as Analyst A, Analyst B, or Reviewer rather than your name unless you separately agree to be named for follow-up. The tool does not send your typed reasoning to an external service. You may stop at any point without giving a reason. If you withdraw, your session data will not be exported or analyzed. Do you agree to take part on these terms?
 
 Do not proceed with anyone who declines.
 
@@ -109,6 +111,7 @@ When unavoidable:
 - Tool-assisted reviewer time starts when Reviewer Matching opens and ends when the report is generated.
 - The session log must contain both `baseline_prose` and `tool` timing records.
 - Keep a manual timer as a cross-check and record discrepancies.
+- Do not truncate a participant merely to preserve the advertised estimate. Overrun is burden evidence.
 
 ## Baseline contamination rule
 
