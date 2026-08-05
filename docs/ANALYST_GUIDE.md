@@ -1,44 +1,53 @@
 # Analyst Guide
 
-You'll be given a short scenario and some evidence. Your job is to record what you actually
-think caused or explains it — not to guess what the tool wants to see.
+You will receive a short synthetic scenario, an exact question, and a frozen evidence packet. Record what you genuinely think—not what you believe the tool expects.
 
-## Two ways to enter your reasoning
+## Before beginning
 
-**A. Guided structured entry.** Add one unit at a time. For each, pick a type:
+- Use only the evidence shown in the participant interface.
+- Do not inspect the repository's reference paths, reviewer decisions, or facilitator notes.
+- Do not discuss the case with the other analyst until both paths are frozen.
+- Practice only with **Training demo — not pilot data**.
+- Tell the facilitator immediately if you see the other analyst's work or any reviewer material.
 
-- **Observation** — something you can point to directly in the evidence.
-- **Assumption** — something you're taking as given without direct evidence for it.
-- **Inference** — a conclusion you're drawing from other units.
-- **Claim** — your overall answer or a sub-conclusion you're asserting.
-- **Unknown** — something you genuinely can't determine from what's given. Using this is a
-  legitimate, expected answer — it is not a sign you did the case wrong.
+## Entry methods
 
-Optionally tag which evidence you used and which earlier units this one builds on, and how
-confident you are (a slider from 0 to 1). None of the optional fields are required.
+### Guided structured entry
 
-**B. Prose-first, then structure.** Write your analysis exactly as you normally would, in
-plain sentences. Click "Suggest a structure" and the tool will propose a type and evidence
-links for each sentence, using a fixed set of keyword rules — not any AI model, and nothing
-leaves your machine. Every suggestion is a draft: edit anything that's wrong, and you must
-tick "confirm" on a unit before it counts. Unconfirmed drafts are simply not saved.
+Add one unit at a time:
 
-Use whichever mode feels more natural. Neither is the "correct" one — part of what this
-pilot measures is which one costs you less time and effort.
+- **Observation:** directly supported by the evidence.
+- **Assumption:** taken as given without direct evidence.
+- **Inference:** derived from evidence or earlier units.
+- **Claim:** an overall answer or asserted sub-conclusion.
+- **Unknown:** something the packet does not establish.
 
-## What's being logged
+Evidence links, dependencies, and confidence are optional. Blank fields still matter because the comparison can inspect only what you explicitly declare.
 
-While you work, the tool logs how long you take, how many edits you make, and whether any
-fields were left empty when you saved. This isn't a performance test of you — it's a
-measurement of the *tool's* burden, which is one of the two things the pilot is checking (the
-other is whether the comparison turns out to be useful). There's no way to "fail" this as an
-analyst.
+### Prose-first, then structure
 
-## A few honest notes
+Write your analysis normally and click **Suggest a structure from my prose**. A fixed offline rule set creates editable drafts; no external AI service is called. Confirm every unit you want included. Unconfirmed drafts are excluded.
 
-- You don't need to get the "right" answer — case 2, in particular, is designed to have no
-  single correct answer.
-- If a case feels noisy or incomplete, that's often intentional (case 3). Recording
-  "unknown" instead of forcing a confident claim is the right move, not a cop-out.
-- Nothing you write is compared to a hidden answer key while you're working. The reviewer
-  will not see any "expected" answer before they finish grading either.
+Use whichever method feels more natural. The pilot measures the burden of both methods; neither is preferred in advance.
+
+## Freeze and hand off
+
+1. Review your entries.
+2. Click **Freeze and save my path**.
+3. Stop editing after the path is frozen.
+4. Download the path JSON when another browser or device will be used.
+5. Return the device to the facilitator.
+6. Do not switch to Reviewer or open Reviewer Matching or Results.
+
+Use only the private transfer method selected by the facilitator. Do not post your path publicly.
+
+## What is recorded
+
+The browser records time, edits, validation errors, abandoned fields, and completion. This measures workflow burden—not your intelligence or job performance. There is no analyst score.
+
+## Reminders
+
+- Case 2 intentionally permits more than one defensible answer.
+- Case 3 is noisy and incomplete; preserving uncertainty may be more accurate than forcing confidence.
+- Confusion, reclassification, and difficulty expressing reasoning are valid findings. Say so rather than trying to make the session look clean.
+- You may withdraw at any time. Tell the facilitator; your work should not be exported or analyzed.
