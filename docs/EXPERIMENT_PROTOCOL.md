@@ -1,146 +1,134 @@
-# Experiment Protocol (v2)
+# Experiment Protocol — v2.0.1
 
 ## Research question
 
-Does structured comparison of two independently produced reasoning paths reveal accurate,
-useful, non-obvious divergences that a normal (prose-only) review misses or takes longer to
-find — without a burden on analysts or reviewers that outweighs that benefit?
+Does structured comparison of two independently produced reasoning paths reveal accurate, useful, non-obvious divergences that normal prose-only review misses or takes longer to find—without analyst or reviewer burden outweighing the benefit?
 
-This is one research question with two failure-independent halves: **usefulness** (does it
-find good things a baseline misses?) and **cost** (is entry/review burden acceptable?). A
-result can pass one half and fail the other; report them separately, not as one pass/fail.
+Treat **usefulness** and **cost** as failure-independent outcomes. A result may pass one and fail the other; never collapse them into a favorable composite.
 
-## Participants
+## Participants and scope
 
-- Two analysts who work independently (see inclusion/exclusion in `PILOT_RUNBOOK.md`).
+- Two analysts who work independently and begin from the same evidence simultaneously.
 - One reviewer who authored neither path.
-- Three cases, shipped in `fixtures/cases/`: straightforward, genuinely ambiguous, and
-  noisy/incomplete. None of the three cases is designed merely to force a divergence; case 2
-  has no single correct answer, and case 3 is designed to test whether the tool over-flags
-  noise as signal.
+- Three synthetic cases: straightforward, genuinely ambiguous, and noisy/incomplete.
+- One separate training demo that is excluded from pilot analysis.
 
-This is a **pilot**, not a powered study: n=2 analysts × 1 reviewer × 3 cases. Its purpose is
-to produce a continue/pivot/stop decision and to surface failure modes cheaply, not to
-produce a publishable effect size. See "Next-stage study" below for what a powered study
-would need.
+This is a formative pilot: two analysts × one reviewer × three cases. It produces a continue/pivot/stop/not-yet-scoreable decision and surfaces failure modes. It cannot produce a generalizable effect size.
 
-## Two entry modes, tested within the same pilot
+Expected role commitments are approximately 60–90 minutes per analyst and 90–120 minutes for the reviewer. Role blocks may be scheduled separately; the facilitator should reserve 2.5–3.5 hours total.
 
-Every analyst may use either:
-- **Mode A — Guided structured entry**: units authored directly in typed fields.
-- **Mode B — Prose-first assisted structuring**: prose written first, then split by a fixed
-  keyword heuristic (`src/prose_split.js`, no AI, fully offline) into editable drafts that
-  must be explicitly confirmed before they count.
+## Participant-safe evidence
 
-Record which mode each analyst used for each case (the tool logs this automatically). If time
-allows, have each analyst use the *other* mode on a spare/demo case so you have within-subject
-signal on which mode has lower burden — but do not require this if it would extend the
-pilot past a single sitting.
+The frozen participant question, instructions, and evidence are stored in:
 
-## Three review modes, counterbalanced
+```text
+fixtures/cases/<case-id>/participant.json
+```
 
-- **Blind**: no candidate suggestions shown at all.
-- **Suggested, hidden score**: candidate pairs shown, match score hidden.
-- **Suggested, visible score**: candidate pairs shown with match score.
+Facilitator-only methodology and design notes remain in `case.json`. Public reference paths and reviewer decisions are not participant material. Screen volunteers for prior exposure.
 
-Assign modes to cases per the Latin square in `PILOT_RUNBOOK.md` so no mode is confounded
-with case difficulty. This directly tests the anchoring-bias risk named in the prior review:
-if acceptance rate or match agreement in `suggested_visible_score` diverges sharply from
-`blind`, the matcher is very possibly anchoring reviewers rather than merely assisting them.
+## Analyst entry modes
 
-## Baseline condition (mandatory)
+Each analyst chooses one mode per case:
 
-For every case, the reviewer also completes an unassisted, prose-only review (raw analyst
-write-ups, no structure, no candidate matches, no report) under a fixed time box, timed
-separately. The pilot's central usefulness measures are computed **relative to this
-baseline**, not in isolation — see Primary measures below.
+- **Guided structured entry:** units authored directly in typed fields.
+- **Prose-first assisted structuring:** normal prose is split by a fixed offline heuristic into editable drafts that must be explicitly confirmed.
+
+Record the selected mode automatically. Optional demo comparison between modes may be used for training observations but is not pilot evidence and must not extend or contaminate the three cases.
+
+## Reviewer modes
+
+- **Blind:** no candidate suggestions.
+- **Suggested, hidden score:** candidate pairs without score.
+- **Suggested, visible score:** candidate pairs with lexical score.
+
+Counterbalance modes with the Latin square in `PILOT_RUNBOOK.md`. Assign before participant work. Do not switch after observing performance.
+
+## Mandatory baseline
+
+For every case, the reviewer first receives only the two analysts' unit text as a plain prose-only readout. The baseline contains no types, evidence links, dependencies, confidence, suggestions, or generated report. It is completed under a fixed time box before structured review.
+
+The central usefulness comparison is relative to this baseline. A baseline viewed after structured review is contaminated and must be rerun, excluded, or explicitly treated as uninterpretable.
 
 ## Procedure
 
-1. Freeze the shared evidence packet and exact research question for the case (already done
-   in each `fixtures/cases/*/case.json` + `path-a.json`/`path-b.json` evidence blocks).
-2. Give both analysts the evidence simultaneously; prevent collaboration.
-3. Each analyst records their reasoning in their chosen entry mode, with evidence
-   references, dependencies, and confidence. The tool logs entry time, edits, abandoned
-   fields, and validation errors automatically.
-4. Reviewer completes the **baseline condition** first for that case (to avoid contaminating
-   their prose-only judgment with structure they've already seen), timed manually.
-5. Reviewer then completes tool-assisted matching under the case's assigned review mode,
-   confirms/rejects/adds matches, and generates the report.
-6. Reviewer grades every generated event using `docs/SCORING_RUBRIC.md`, and separately lists
-   any important divergence they believe is real but was not reported (`missing_divergences`).
-7. Post-session interview (see `PILOT_RUNBOOK.md`) with all participants.
-8. Repeat for all three cases; export session data after each.
+1. Freeze the participant-safe packet and exact question.
+2. Give both analysts the packet simultaneously in isolated workspaces.
+3. Analysts record, confirm, and freeze their reasoning without discussion.
+4. Download and privately transfer the two role-labeled paths to the reviewer browser when separate workspaces are used.
+5. Validate imported role, case, question, and exact evidence packet.
+6. Reviewer completes the prose-only baseline first and the facilitator records duration and differences found.
+7. Reviewer opens the assigned structured mode, confirms/rejects/adds matches, and assesses contradiction separately.
+8. Generate the deterministic report.
+9. Reviewer grades every reported event before group discussion or facilitator-note disclosure.
+10. Reviewer separately records every important divergence they believe was missed.
+11. Conduct role-specific post-session interviews.
+12. Repeat for all three cases and export private raw data after each.
 
-## Event grading (see docs/SCORING_RUBRIC.md for the exact rubric table)
+A one-computer sequential analyst workflow does not satisfy simultaneous exposure. Log it as `sequential_analyst_entry_single_host`; use it primarily for operational or burden observations rather than clean evidence for the central claim.
 
-Six grades: useful & non-obvious, useful but obvious, accurate but low value, misleading,
-wrong, missing. Grading happens per event, by the reviewer, before any group discussion of
-the case's design note.
+## Primary measures
 
-## Primary measures (exact formulas in src/analysis.js and docs/SCORING_RUBRIC.md)
+Exact formulas are in `src/analysis.js` and `docs/SCORING_RUBRIC.md`:
 
-- Useful precision
-- Misleading-event rate
-- Important-divergence recall
-- Entry burden (median minutes, by mode)
-- Reviewer time: tool-assisted vs. baseline (minutes, signed — negative means the tool was
-  faster)
-- Matcher acceptance rate and manual-match rate (by review mode, for anchoring comparison)
-- Reuse intent (median, 1–5)
+- useful precision;
+- misleading-event rate;
+- important-divergence recall;
+- entry burden by mode;
+- tool-assisted reviewer time versus baseline;
+- matcher acceptance rate;
+- manual-match rate;
+- reuse-intent median;
+- anchoring comparison by review mode.
+
+Report numerator, denominator, exclusions, and zero-denominator notes.
+
+## Event grading
+
+Use these grades for reported events:
+
+- `useful_nonobvious`
+- `useful_obvious`
+- `accurate_low_value`
+- `misleading`
+- `wrong`
+
+Record important unreported differences separately as `missing_divergences`; `missing` is not a grade attached to a generated event.
 
 ## Continue / pivot / stop criteria
 
-See `docs/SCORING_RUBRIC.md` for the exact predefined thresholds. In short: continue only if
-usefulness clears its bar **and** burden clears its bar **and** the tool beats baseline on
-reviewer time or important-divergence recall. A tool that finds good things slower than
-prose review, or a tool nobody wants to use twice, does not get to continue merely because
-its precision number looks fine in isolation.
+Use the predefined thresholds in `docs/SCORING_RUBRIC.md`. Continue only when usefulness clears its bar, burden clears its bar, and the tool improves reviewer time or important-divergence recall relative to baseline. A precise tool that is slower, exhausting, or unwanted does not continue merely because one metric is favorable.
 
-## Bias controls
+## Bias and contamination controls
 
-- Counterbalance review mode across cases (Latin square above).
-- Do not reveal any case's `design_note_do_not_show_before_grading` to analysts or the
-  reviewer before grading is complete.
-- Freeze the six-grade rubric before any session starts; do not add or redefine grades
-  mid-pilot.
-- Preserve raw paths, all reviewer decisions (including rejected suggestions), full timing
-  logs, and interview notes — not only the final report.
-- Report failures and missed divergences as prominently as successes in the writeup.
-- Log every deviation from `PILOT_RUNBOOK.md` as a `protocol_deviation`, and report how each
-  was handled (excluded / included with caveat / re-run).
+- Simultaneous analyst exposure and independent work.
+- Counterbalanced reviewer modes.
+- Baseline before structured review.
+- Separate training demo.
+- Participant packets separated from facilitator notes and reference answers.
+- Event grading before discussion or design-note disclosure.
+- Preservation of accepted, rejected, and manual interactions.
+- Frozen rubric and thresholds.
+- Role-labeled raw paths, timing, decisions, grades, interviews, and deviations.
+- Equal prominence for failures, misleading events, and missed divergences.
 
 ## Null-result interpretation
 
-A null result here is not "nothing happened" — it is informative and must be reported as
-such. Distinguish between these outcomes explicitly in the writeup:
+- **Clean null:** usefulness and recall remain low with tolerable burden and low reuse intent. Stop for this task class.
+- **Burden-confounded null:** people rush, disengage, abandon fields, or cannot complete the workflow. The hypothesis remains insufficiently tested; pivot entry/review burden before retesting.
+- **Anchoring-confounded result:** visible suggestions sharply change acceptance or misleading rates relative to blind mode. Pivot matcher presentation before interpreting usefulness.
+- **Contaminated baseline:** reviewer saw structure or suggestions first. Rerun or exclude baseline comparisons.
+- **Sequential-exposure limitation:** analyst start times differ on one host. Do not treat ordering as neutral.
+- **Small-n noise:** a single case or trio is a data point, not a population conclusion.
 
-- **Clean null**: useful precision and recall are both low across all three cases, burden is
-  acceptable, and reuse intent is low. Interpretation: the comparison method itself likely
-  does not add value over prose review for this kind of task. Stop, per
-  `docs/SCORING_RUBRIC.md`.
-- **Burden-confounded null**: usefulness measures are inconclusive because entry/review
-  burden was so high that analysts or the reviewer visibly disengaged (rushed entries, many
-  validation errors, terse grading). Interpretation: the hypothesis is untested, not
-  refuted. Pivot to a lower-burden entry design before concluding anything about
-  usefulness.
-- **Anchoring-confounded null**: reviewers rubber-stamped suggested matches in
-  `suggested_visible_score` mode at a much higher rate than in `blind` mode, and misleading
-  rate was correspondingly higher. Interpretation: the *hypothesis* may still be true, but
-  the current matcher/UI is contaminating the measurement. Pivot the review-mode default to
-  blind or hidden-score before re-testing usefulness.
-- **Small-n noise**: any one case producing an outlier result (e.g., one case has zero
-  divergences) is not, by itself, evidence for or against the hypothesis at n=1 case per
-  condition. Report it as a data point, not a conclusion.
+## Next-stage study
 
-## Next-stage study (if the pilot clears continue criteria)
+Only after the pilot clears continue criteria:
 
-- Increase to at least 6–10 analyst pairs and 3–4 reviewers across a wider case set spanning
-  multiple domains (not just incident-review-style cases), to test generalization.
-- Pre-register the continue/stop thresholds again for the larger study; do not reuse the
-  pilot's thresholds as if they were confirmed.
-- Consider replacing the lexical matcher with a semantically aware one only after the
-  lexical version has been shown, empirically, to be a bottleneck (e.g., low acceptance rate
-  driven by missed paraphrases) — not before.
-- Only at this stage does multi-user, persistent, or collaborative infrastructure become
-  worth considering, and only for the specific bottlenecks the pilot data identifies.
+- recruit at least 6–10 analyst pairs and 3–4 reviewers;
+- use a broader and preferably privately held case set;
+- pre-register thresholds again;
+- plan sample size and target effects;
+- test inter-reviewer reliability;
+- consider semantic matching only when pilot evidence shows lexical matching is the bottleneck;
+- add persistent or collaborative infrastructure only for observed workflow needs.

@@ -19,8 +19,16 @@
     <li>This is <strong>pilot-ready but empirically unvalidated</strong>. No claim is made that it works yet.</li>
     <li>It does not determine truth, rank analysts, or infer contradictions from wording.</li>
     <li>Every automatic suggestion is a <strong>proposal</strong> a human must confirm.</li>
+    <li>The training demo is not pilot data.</li>
   </ul>
   <button id="closeWhatIsThis">Close</button>
+</dialog>
+
+<dialog id="handoffDialog">
+  <h2>Path saved</h2>
+  <p>Your reasoning path is frozen in this browser. Download a copy if another device will be used, then hand the device back to the facilitator.</p>
+  <button id="handoffDownloadPathBtn">Download my path</button>
+  <button id="closeHandoffBtn" class="secondary">Return to setup</button>
 </dialog>
 
 <main id="main">
@@ -35,39 +43,64 @@
     <h2>Setup</h2>
     <label for="caseSelect">Case</label>
     <select id="caseSelect">
+      <option value="demo-training">Training demo — not pilot data</option>
       <option value="case-01-straightforward">Case 1 — Straightforward</option>
       <option value="case-02-ambiguous">Case 2 — Ambiguous</option>
       <option value="case-03-noisy">Case 3 — Noisy / incomplete</option>
     </select>
     <div id="caseSummary" class="case-summary" aria-live="polite"></div>
+    <div id="evidencePacket" class="evidence-packet" aria-live="polite"></div>
 
     <label for="roleSelect">Your role right now</label>
     <select id="roleSelect">
       <option value="analyst_a">Analyst A</option>
       <option value="analyst_b">Analyst B</option>
-      <option value="reviewer">Reviewer</option>
+      <option value="reviewer">Reviewer / facilitator handoff</option>
     </select>
+    <p class="hint">The facilitator controls role changes. Analysts cannot open reviewer or result screens.</p>
 
-    <label for="reviewModeSelect">Reviewer matching mode (facilitator sets this per session — see PILOT_RUNBOOK.md)</label>
-    <select id="reviewModeSelect">
-      <option value="blind">Blind — no suggestions shown</option>
-      <option value="suggested_hidden_score">Suggested — scores hidden</option>
-      <option value="suggested_visible_score">Suggested — scores visible</option>
-    </select>
+    <div id="reviewerControls" class="reviewer-controls" hidden>
+      <h3>Reviewer preflight</h3>
+      <label for="reviewModeSelect">Reviewer matching mode</label>
+      <select id="reviewModeSelect">
+        <option value="blind">Blind — no suggestions shown</option>
+        <option value="suggested_hidden_score">Suggested — scores hidden</option>
+        <option value="suggested_visible_score">Suggested — scores visible</option>
+      </select>
 
-    <button id="loadDemoBtn">Load a completed demo (case 1)</button>
-    <p class="hint">Loads pre-filled paths so you can see the whole flow before running a real session.</p>
+      <div class="import-grid">
+        <label for="importPathA">Import Analyst A path
+          <input type="file" id="importPathA" accept="application/json,.json">
+        </label>
+        <label for="importPathB">Import Analyst B path
+          <input type="file" id="importPathB" accept="application/json,.json">
+        </label>
+      </div>
+      <div id="pathImportStatus" class="status-box" aria-live="polite"></div>
+
+      <button id="downloadBaselineBtn" class="secondary">Download prose-only baseline packet</button>
+      <p class="hint">Give this plain-text packet to the reviewer before opening Reviewer Matching. It omits types, evidence links, dependencies, confidence, and match suggestions.</p>
+
+      <label for="baselineMinutes">Completed prose-only baseline duration (minutes)</label>
+      <input id="baselineMinutes" type="number" min="0.1" step="0.1" inputmode="decimal" placeholder="Example: 8.5">
+      <p class="hint">Reviewer Matching remains locked until both paths are present and the baseline duration is recorded.</p>
+    </div>
+
+    <button id="loadDemoBtn">Load the separate completed training demo</button>
+    <p class="hint">The demo uses a non-pilot case and cannot expose the three pilot reference paths.</p>
+    <button id="resetSessionBtn" class="danger">Reset all local session data</button>
   </section>
 
   <section data-panel="entry" class="panel">
     <h2>Analyst Entry</h2>
+    <div id="entryEvidencePacket" class="evidence-packet"></div>
     <div class="entry-mode-toggle" role="tablist" aria-label="Entry mode">
       <button role="tab" aria-selected="true" data-mode="guided" class="mode-tab active">A. Guided structured entry</button>
       <button role="tab" aria-selected="false" data-mode="prose" class="mode-tab">B. Prose-first, then structure</button>
     </div>
 
     <div data-mode-panel="guided" class="mode-panel active">
-      <p class="hint">Add one reasoning unit at a time. Plain-language labels; you don't need to know any formal terms.</p>
+      <p class="hint">Add one reasoning unit at a time. Plain-language labels; you do not need formal training.</p>
       <div id="guidedUnits"></div>
       <button id="addUnitBtn">+ Add a reasoning unit</button>
     </div>
@@ -76,12 +109,16 @@
       <label for="proseInput">Write your analysis as normal prose</label>
       <textarea id="proseInput" rows="8" placeholder="Write freely. One sentence per idea works best."></textarea>
       <button id="splitProseBtn">Suggest a structure from my prose</button>
-      <p class="hint">Nothing here uses AI — it's a fixed set of keyword rules, entirely offline. Every suggested unit stays editable, and none of it is used until you explicitly confirm each one below.</p>
+      <p class="hint">Nothing here uses AI. It is a fixed offline rule set. Every draft stays editable and is excluded until you explicitly confirm it.</p>
       <div id="draftUnits"></div>
     </div>
 
     <div class="entry-stats" aria-live="polite" id="entryStats"></div>
-    <button id="submitPathBtn">Save my path</button>
+    <button id="submitPathBtn">Freeze and save my path</button>
+    <div id="pathSavedBox" class="status-box" hidden>
+      <strong>Path saved.</strong> Do not open reviewer materials. Download your path if it must be transferred to another device.
+      <div><button id="downloadPathBtn" class="secondary">Download my path</button></div>
+    </div>
   </section>
 
   <section data-panel="review" class="panel">
@@ -103,7 +140,7 @@
     <button id="exportJsonBtn">Download JSON</button>
     <button id="exportMdBtn">Download Markdown</button>
     <button id="exportCsvBtn">Download CSV</button>
-    <button id="exportSessionBtn">Download session log (timing + logging data)</button>
+    <button id="exportSessionBtn">Download session log</button>
   </section>
 
   <div id="errorBox" role="alert" aria-live="assertive"></div>

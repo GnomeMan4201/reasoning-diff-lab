@@ -1,0 +1,14 @@
+{
+  "case_id": "case-01-straightforward",
+  "title": "Authentication outage (straightforward)",
+  "research_question": "What most likely caused the authentication outage?",
+  "difficulty": "straightforward",
+  "analyst_instructions": "Read the evidence packet only. Do not discuss it with the other analyst. Record your own observations, assumptions, inferences, claims, and unknowns, with confidence and evidence references where appropriate.",
+  "reviewer_instructions": "Complete the prose-only baseline before opening Reviewer Matching. Then review the two frozen paths under the assigned review mode. Mark contradiction only when two related statements cannot both be true.",
+  "evidence": [
+    {"id": "E1", "text": "Authentication failures began at 14:02 UTC."},
+    {"id": "E2", "text": "A configuration deployment completed at 14:01 UTC."},
+    {"id": "E3", "text": "Token validation errors reported an unexpected issuer."},
+    {"id": "E4", "text": "Rolling back the deployment restored service at 14:19 UTC."}
+  ]
+}

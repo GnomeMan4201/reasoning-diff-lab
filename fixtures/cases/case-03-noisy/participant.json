@@ -1,0 +1,14 @@
+{
+  "case_id": "case-03-noisy",
+  "title": "Refund request spike (noisy / incomplete)",
+  "research_question": "What most likely explains the spike in refund requests last week?",
+  "difficulty": "noisy",
+  "analyst_instructions": "Read the evidence packet only. Do not discuss it with the other analyst. Separate temporal coincidence from support, and preserve unresolved uncertainty rather than forcing a single explanation.",
+  "reviewer_instructions": "Complete the prose-only baseline before opening Reviewer Matching. Pay particular attention to whether the report treats noise or an unsupported coincidence as a meaningful divergence.",
+  "evidence": [
+    {"id": "E1", "text": "The primary shipping carrier reported regional delivery delays starting Monday."},
+    {"id": "E2", "text": "Refund requests citing 'item never arrived' rose 3x starting Wednesday."},
+    {"id": "E3", "text": "Overall order volume was flat week over week."},
+    {"id": "E4", "text": "A billing-page redesign shipped on Tuesday of the same week."}
+  ]
+}

@@ -1,22 +1,23 @@
 # Pilot Session Record Template
 
-Copy this file into a private working location for each pilot session. Do **not** commit completed copies containing participant availability, contact details, names, or raw session data to the public repository.
+Copy this file into a private working location for each pilot. Do **not** commit completed copies containing participant availability, contact details, names, raw paths, prose, timing, or session data to the public repository.
 
 ## Session identity
 
 - Session ID: `RDL-PILOT-YYYYMMDD-01`
-- Instrument branch: `release/v2.0.0`
+- Instrument branch: `release/v2.0.1`
 - Instrument commit:
 - Session date:
 - Time zone:
-- Format: co-located / remote
+- Format: one-host sequential / separate devices / remote
 - Facilitator role label:
+- Private storage location:
 
 ## Role confirmation
 
 Use role labels only.
 
-| Role | Confirmed | Consent obtained | No prior fixture exposure | Completed session |
+| Role | Confirmed | Consent obtained | Fixture exposure screened | Completed session |
 |---|---:|---:|---:|---:|
 | Analyst A | No | No | No | No |
 | Analyst B | No | No | No | No |
@@ -25,13 +26,19 @@ Use role labels only.
 ## Technical preflight
 
 - [ ] Node.js 20 or newer confirmed.
-- [ ] `npm test` completed with 58 passing tests and 0 failures.
-- [ ] `npm run build` completed successfully.
-- [ ] `npm start` served the frozen build.
-- [ ] Browser storage reset was tested.
-- [ ] Report export was tested.
-- [ ] Session-log export was tested.
-- [ ] Private storage destination was prepared.
+- [ ] `npm run verify` completed with 65 tests, successful build, and safety smoke check.
+- [ ] Server bound to `127.0.0.1` unless another setup was explicitly rehearsed.
+- [ ] Separate training demo loaded.
+- [ ] Participant evidence visible for all pilot cases.
+- [ ] Analyst reviewer-screen lock confirmed.
+- [ ] Path download confirmed.
+- [ ] Path import confirmed.
+- [ ] Wrong-case or altered-evidence import rejected.
+- [ ] Baseline packet download confirmed.
+- [ ] Baseline-duration gate confirmed.
+- [ ] Rejected suggestion logging confirmed.
+- [ ] Report and session-log exports reopened.
+- [ ] Local reset confirmed.
 
 Preflight notes:
 
@@ -43,17 +50,31 @@ Preflight notes:
 | Case 2 — ambiguous |  | 2 | 10 minutes | No |
 | Case 3 — noisy |  | 3 | 10 minutes | No |
 
+Assignment recorded before participant work began: Yes / No
+
+## Path handling
+
+| Artifact | Created | Transfer needed | Imported/available in reviewer browser | Private filename/reference |
+|---|---:|---:|---:|---|
+| Analyst A path | No | No | No |  |
+| Analyst B path | No | No | No |  |
+| Prose-only baseline packet | No | N/A | N/A |  |
+
+Transfer method:
+
+Transfer or import problems:
+
 ## Timing summary
 
-Record authoritative timing in the exported session data. This table is only a facilitator cross-check.
+Authoritative timing belongs in the exported session data. This table is a facilitator cross-check. The order below is mandatory: baseline precedes tool-assisted review.
 
 | Stage | Start | End | Notes |
 |---|---|---|---|
-| Consent and demo |  |  |  |
-| Analyst entry |  |  |  |
-| Reviewer alignment |  |  |  |
+| Consent and training demo |  |  |  |
+| Analyst entry and path freeze |  |  |  |
 | Prose-only baseline |  |  |  |
-| Event grading |  |  |  |
+| Tool-assisted reviewer alignment |  |  |  |
+| Event grading and missing divergences |  |  |  |
 | Post-session interview |  |  |  |
 | Export and reset |  |  |  |
 
@@ -61,103 +82,111 @@ Record authoritative timing in the exported session data. This table is only a f
 
 Record deviations as they happen. Do not silently fix or omit them.
 
-| Time | Case | Stage | What happened | Likely impact | Action taken |
+| Time | Case | Stage | What happened | Likely impact | Action: include / exclude / rerun / caveat |
 |---|---|---|---|---|---|
 |  |  |  |  |  |  |
 
 ## Export inventory
 
-| Required artifact | Saved | Private filename or storage reference | Sanitized public summary allowed? |
-|---|---:|---|---:|
-| Case 1 report | No |  | No |
-| Case 1 session log | No |  | No |
-| Case 2 report | No |  | No |
-| Case 2 session log | No |  | No |
-| Case 3 report | No |  | No |
-| Case 3 session log | No |  | No |
-| Prose baseline notes | No |  | No |
-| Missing-divergence list | No |  | No |
-| Interview notes | No |  | No |
+| Required artifact | Saved | Reopened | Private filename/reference | Public summary allowed? |
+|---|---:|---:|---|---:|
+| Case 1 Analyst A path | No | No |  | No |
+| Case 1 Analyst B path | No | No |  | No |
+| Case 1 report JSON/Markdown/CSV | No | No |  | Sanitized only |
+| Case 1 session log | No | No |  | No |
+| Case 2 Analyst A path | No | No |  | No |
+| Case 2 Analyst B path | No | No |  | No |
+| Case 2 report JSON/Markdown/CSV | No | No |  | Sanitized only |
+| Case 2 session log | No | No |  | No |
+| Case 3 Analyst A path | No | No |  | No |
+| Case 3 Analyst B path | No | No |  | No |
+| Case 3 report JSON/Markdown/CSV | No | No |  | Sanitized only |
+| Case 3 session log | No | No |  | No |
+| Baseline notes | No | No |  | No |
+| Event grades | No | No |  | Aggregated only |
+| Missing-divergence list | No | No |  | Aggregated only |
+| Questionnaires and interview notes | No | No |  | Sanitized only |
+| Protocol-deviation record | No | No |  | Sanitized summary |
 
 ## Immediate facilitator observations
 
-Separate direct observations from interpretation.
+Separate directly observed facts from interpretation.
 
 ### Directly observed
 
-- 
+-
 
 ### Preliminary interpretation
 
-- 
+-
 
-## Participant reuse intent
-
-| Role | Not at all | Maybe | Yes | Reason given |
-|---|---:|---:|---:|---|
-| Analyst A |  |  |  |  |
-| Analyst B |  |  |  |  |
-| Reviewer |  |  |  |  |
-
-## Post-session questions
+## Participant responses
 
 ### Analyst A
 
-- What made structured entry harder or easier than prose?
-- Which terms or steps were confusing?
-- What did you avoid recording, and why?
-
-Notes:
+- Reuse intent, 1–5:
+- What was harder/easier than normal prose?
+- Confusing terms or steps:
 
 ### Analyst B
 
-- What made structured entry harder or easier than prose?
-- Which terms or steps were confusing?
-- What did you avoid recording, and why?
-
-Notes:
+- Reuse intent, 1–5:
+- What was harder/easier than normal prose?
+- Confusing terms or steps:
 
 ### Reviewer
 
-- Did the alignment interface help locate meaningful divergence?
-- Were any findings technically accurate but misleading or trivial?
-- What important differences were missing?
-- Did candidate-match visibility influence decisions?
+- Reuse intent, 1–5:
+- What was harder/easier than normal review?
+- Confusing terms or steps:
+- Effect of suggestions or visible scores:
 
-Notes:
+## Data assembly
 
-## Sanitization check
+- [ ] Raw exports preserved untouched.
+- [ ] Analysis copies created.
+- [ ] `graded_events` completed.
+- [ ] `missing_divergences` completed.
+- [ ] `session_timings` merged.
+- [ ] `reviewer_timings` contains baseline and tool conditions.
+- [ ] `match_logs` merged with accepted, rejected, and manual outcomes.
+- [ ] `reviewer_decisions_flat` merged.
+- [ ] `questionnaires` completed.
+- [ ] `protocol_deviations` completed.
+- [ ] Merged file matches `fixtures/sample-session.json` shape.
 
-Before creating any public issue or write-up:
+## Analysis output
 
-- [ ] No participant names.
-- [ ] No contact details or availability windows.
-- [ ] No credentials or private system information.
-- [ ] No client, employer, patient, or source identities.
-- [ ] No raw participant text unless explicit permission was obtained.
-- [ ] No exported session file attached to a public issue.
-- [ ] Claims distinguish observations, interpretations, and unknowns.
+Command:
 
-## Analysis and decision
+```bash
+npm run analyze -- your-merged-session.json
+```
 
-- Merged session file created: Yes / No
-- `npm run analyze -- <session-file>` completed: Yes / No
-- Useful-difference precision:
-- Material-difference coverage:
-- Misleading-output rate:
-- Entry overhead:
-- Review-time comparison:
-- Reviewer stability: scoreable / not yet scoreable
-- Decision: continue / pivot / stop / not yet scoreable
+Record each metric with numerator, denominator, exclusions, and note:
 
-Decision rationale:
+- Useful precision:
+- Misleading-event rate:
+- Important-divergence recall:
+- Entry burden by mode:
+- Reviewer time delta:
+- Matcher acceptance rate:
+- Manual-match rate:
+- Reuse intent:
+- Anchoring comparison by mode:
+- Not-yet-scoreable metrics and reasons:
 
-## Follow-up actions
+## Final pilot decision
 
-Only list changes supported by observed failures or results.
+- [ ] Continue
+- [ ] Pivot
+- [ ] Stop
+- [ ] Not yet scoreable
 
-- [ ] Documentation correction:
-- [ ] Bug fix:
-- [ ] Protocol clarification:
-- [ ] Instrument change proposed for a future version:
-- [ ] No change; gather another session:
+Evidence supporting the decision:
+
+Evidence against the decision:
+
+Known limitations and deviations:
+
+Next action permitted by the evidence:

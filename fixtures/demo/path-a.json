@@ -1,0 +1,17 @@
+{
+  "id": "demo-path-a",
+  "case_id": "demo-training",
+  "analyst_id": "analyst_a",
+  "question": "What most likely caused the nightly report to arrive late?",
+  "evidence": [
+    {"id": "D1", "text": "The report job was scheduled to start at 02:00."},
+    {"id": "D2", "text": "The upstream input file arrived at 02:23."},
+    {"id": "D3", "text": "Processing took four minutes, matching its normal duration."},
+    {"id": "D4", "text": "The completed report was delivered at 02:28."}
+  ],
+  "units": [
+    {"id": "A1", "type": "observation", "text": "The input file arrived 23 minutes after the report job was scheduled to begin.", "evidence_refs": ["D1", "D2"], "depends_on": [], "confidence": 0.98, "source": "guided", "confirmed": true},
+    {"id": "A2", "type": "inference", "text": "The job could not complete on time because its required input was late.", "evidence_refs": ["D3"], "depends_on": ["A1"], "confidence": 0.9, "source": "guided", "confirmed": true},
+    {"id": "A3", "type": "claim", "text": "The upstream file delay caused the late report.", "evidence_refs": ["D4"], "depends_on": ["A2"], "confidence": 0.92, "source": "guided", "confirmed": true}
+  ]
+}

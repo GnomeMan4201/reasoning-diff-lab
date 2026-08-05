@@ -1,151 +1,160 @@
 # Pilot Runbook
 
-Audience: whoever is facilitating a pilot session. You should be able to run this without
-contacting the author. If something here is ambiguous, log it as a protocol deviation
-(see docs/DATA_DICTIONARY.md#protocol_deviation) rather than guessing silently.
+Audience: the pilot facilitator. When this document is ambiguous, record a protocol deviation rather than guessing silently.
 
-## Before the session
+## Before scheduling
 
-1. Confirm you have: two analysts who will work independently, one reviewer who authored
-   neither path, and roughly 90–120 minutes total across three cases.
-2. Run `npm install --package-lock-only` is unnecessary — there are no dependencies. Run
-   `npm test && npm run build` and confirm both succeed. If either fails, stop and do not
-   run the pilot on this checkout.
-3. Run `npm start` and open the printed URL on the machine(s) participants will use. The
-   interface works on a phone browser; a laptop is easier for the analyst entry step.
-4. Decide and record, in advance, the review-mode order for the three cases (counterbalance
-   across sessions if you are running more than one pilot — see "Counterbalancing" below).
-5. Print or share `docs/SCORING_RUBRIC.md` (analysts do not need it; only the reviewer does).
-6. Read the consent language below to all participants and get their agreement before
-   starting.
+1. Confirm two independent analysts, one reviewer who authored neither path, and one facilitator.
+2. Tell volunteers the realistic role-specific commitments: about 60–90 minutes per analyst and 90–120 minutes for the reviewer.
+3. Reserve 2.5–3.5 hours of facilitator time across setup, analyst work, transfers, reviewer work, interviews, exports, and resets. The work may be split into role-specific blocks.
+4. Use the frozen `release/v2.0.1` branch.
+5. On the actual host machine, run `npm run verify` and complete all 16 cold-rehearsal steps in `docs/PRE_PILOT_READINESS_AUDIT.md`.
+6. Prepare two analyst workspaces capable of beginning from the same evidence at the same time. Separate devices are preferred.
+7. Decide and record all three review modes before participant work begins.
+8. Prepare private storage, a manual timer, the scoring rubric, and the private session record.
+9. Read the consent language below and obtain agreement before logging begins.
 
-## Consent language (read aloud or share verbatim)
+## Consent language
 
-> You're being asked to take part in a short pilot test of a research prototype. You will
-> either write a short analysis of a scenario, or review two people's analyses and note
-> where you think they differ. Sessions take about 20–40 minutes per case. Your timing,
-> edits, and typed responses will be logged locally on this machine only, tied to a role
-> label (Analyst A / Analyst B / Reviewer) rather than your name, unless you choose to give
-> your name for follow-up. Nothing you write is sent anywhere over a network - this tool runs
-> entirely on this machine. You can stop at any point without giving a reason, and anything
-> you've entered will simply not be exported. Do you agree to take part on these terms?
+> You're being asked to take part in a short pilot test of a research prototype. Analysts should expect about 60–90 minutes across training, three synthetic cases, path handoff, and a short interview. The reviewer should expect about 90–120 minutes across baseline reviews, structured comparison, grading, and an interview. The facilitator may schedule these as separate role-specific blocks. Your timing, edits, decisions, and typed responses will be logged locally under a role label such as Analyst A, Analyst B, or Reviewer rather than your name unless you separately agree to be named for follow-up. The tool does not send your typed reasoning to an external service. You may stop at any point without giving a reason. If you withdraw, your session data will not be exported or analyzed. Do you agree to take part on these terms?
 
-If anyone declines, do not proceed with them in that role.
+Do not proceed with anyone who declines.
 
-## Withdrawal procedure
+## Withdrawal
 
-- A participant may withdraw at any time by telling the facilitator.
-- Do not export or analyze that participant's session data. Delete their entries from
-  local storage (in the browser: the "reset" action described in `docs/LIMITATIONS.md`, or
-  simply do not click any export button and close the tab without saving).
-- Log the withdrawal as a protocol deviation with reason "withdrawal", no other detail
-  required.
+- Stop their participation immediately.
+- Do not export or analyze their work.
+- Use **Reset all local session data** on their browser and confirm the path and report are gone.
+- Record only a role-labeled deviation with reason `withdrawal` unless the participant volunteers further detail.
 
 ## Roles
 
-- **Analyst A / Analyst B**: work independently. Do not let them discuss the case with each
-  other before both have saved a path. If they are in the same room, seat them so they
-  cannot see each other's screens.
-- **Reviewer**: must not be one of the two analysts on that case. Should not see either
-  analyst's raw prose beforehand.
-- **Facilitator (you)**: sets the review mode per case, times the baseline condition,
-  administers the post-session interview, and holds the master copy of `case.json` files
-  (which contain the design notes analysts and reviewers should not see before grading).
+- **Analyst A / Analyst B:** receive the same evidence and question simultaneously, work independently, and never see the other path before both are frozen.
+- **Reviewer:** authored neither path, completes the prose-only baseline first, then performs structured matching and event grading.
+- **Facilitator:** controls protected materials, case and mode assignment, timing, path transfer, exports, consent, and deviations.
 
-## Inclusion / exclusion criteria
+The browser role selector is an operating guard, not an authentication system. Supervision remains necessary.
 
-- Include: anyone comfortable reading a short written scenario and typing in a web form.
-- Exclude: anyone who authored or reviewed these specific fixture cases before (their
-  responses would not be naive) — use different cases for them, or skip the pilot for them.
+## Eligibility and fixture exposure
 
-## Case ordering and counterbalancing
+Include people comfortable reading a short technical scenario, typing in a browser, and describing uncertainty. Formal credentials are not required for this formative pilot.
 
-- With three cases and (if running more than one trio of participants) more than one
-  session, rotate which review mode (`blind`, `suggested_hidden_score`,
-  `suggested_visible_score`) is assigned to which case, so no single mode is always paired
-  with the same difficulty level. A simple Latin square for three sessions:
+Exclude anyone who authored or inspected the fixture reference paths, reviewer decisions, facilitator design notes, or scoring rules. Because these materials are public in the repository, ask about exposure directly before scheduling. A later confirmatory study should use privately held or newly generated cases.
 
-  | Session | Case 1 mode | Case 2 mode | Case 3 mode |
-  |---|---|---|---|
-  | 1 | blind | suggested_hidden_score | suggested_visible_score |
-  | 2 | suggested_hidden_score | suggested_visible_score | blind |
-  | 3 | suggested_visible_score | blind | suggested_hidden_score |
+## Review-mode counterbalancing
 
-- Present the three cases in a fixed order (1, 2, 3) unless you are running enough sessions
-  to counterbalance case order too; if you do, log the order used per session.
+| Session | Case 1 | Case 2 | Case 3 |
+|---|---|---|---|
+| 1 | blind | suggested_hidden_score | suggested_visible_score |
+| 2 | suggested_hidden_score | suggested_visible_score | blind |
+| 3 | suggested_visible_score | blind | suggested_hidden_score |
 
-## Blinding
+Use case order 1, 2, 3 unless enough sessions exist to counterbalance case order too. Record every departure.
 
-- Analysts never see each other's work or the case's `design_note_do_not_show_before_grading`.
-- The reviewer grades every event (see `docs/SCORING_RUBRIC.md`) **before** you reveal the
-  design note to them, if you choose to reveal it at all.
+## Protected material and blinding
 
-## Training procedure
+- Participants receive only the participant-safe packet loaded by the interface.
+- Use only `demo-training` for training.
+- Do not show pilot `path-a.json`, `path-b.json`, reviewer decisions, expected risks, or design notes before grading finishes.
+- Do not permit analyst discussion before both paths are frozen.
+- Do not open Reviewer Matching before the prose-only baseline is complete.
+- Record early exposure immediately and determine whether the affected result must be rerun, excluded, or reported with a caveat.
 
-- Give each analyst the Quickstart (five minutes) and let them try the demo case
-  (`Load a completed demo`) once before their real case, so their first real attempt isn't
-  also their first exposure to the interface.
-- Give the reviewer a two-minute walkthrough of the three decision buttons and the
-  contradiction checkbox, using the demo case's generated report as an example.
+## Training
 
-## Timing procedure
+- Analysts practice only with **Training demo — not pilot data**.
+- Reviewer receives a short walkthrough of the three decisions and contradiction control using the demo.
+- Demo output is never merged into pilot data.
 
-- The tool logs analyst entry time and reviewer match-decision time automatically once you
-  navigate steps in order; you do not need a separate stopwatch for those.
-- For the baseline (prose-only) condition, time the reviewer manually from when they start
-  reading to when they say they are done, and enter it as a `reviewer_timings` record with
-  `condition: "baseline_prose"` in the session file (see `docs/DATA_DICTIONARY.md`).
+## Device arrangements
 
-## Baseline condition
+### Protocol-conforming arrangement
 
-For each case, in addition to the tool-assisted review, give the reviewer the two analysts'
-raw prose (or, if they used guided entry, a plain read-out of their units as prose) with no
-structure, no candidate matches, and no report. Ask them to list what they consider the
-important differences within a fixed time box (10 minutes is reasonable for these case
-sizes), then time them. This is the comparison condition the study needs — the tool must
-be measured against this, not evaluated in isolation.
+Both analysts begin from the same frozen evidence packet at the same time on separate devices or isolated workspaces. Each freezes and downloads a role-labeled path. The files move through the preselected private transfer channel to the reviewer browser, which validates role, case, question, and evidence.
 
-## Reviewer grading
+Each analyst device may run its own verified local copy. Alternatively, a deliberately configured trusted local-network setup may be used only after rehearsal and explicit risk review; the default server remains loopback-only.
 
-After the tool-assisted report is generated for a case, the reviewer grades **every** listed
-event using the six grades in `docs/SCORING_RUBRIC.md`, before any group discussion. The
-reviewer also lists any divergence they believe is real and important but that they did not
-see reported — these become `missing_divergences` entries.
+### Single-computer sequential fallback
 
-## Post-session interview
+A single browser can preserve visual separation while Analyst A and Analyst B take turns, but it cannot satisfy simultaneous evidence exposure. Treat this as a **protocol deviation**, not an equivalent session.
 
-Ask each participant, briefly:
-1. Would you use this again for real work? (Not at all / Maybe / Yes) — this feeds
-   `reuse_intent`.
-2. What made this harder or easier than writing/reading normal prose?
-3. Was anything about the terminology or workflow confusing?
-4. (Reviewer only) Did seeing candidate match scores change how you decided, compared to
-   when scores were hidden or absent?
+When unavoidable:
 
-## Data retention
+1. Record `sequential_analyst_entry_single_host` before analysis begins.
+2. Preserve which analyst went first.
+3. Do not compare timing or fatigue as though ordering were neutral.
+4. Report the limitation prominently.
+5. Prefer using the run as an operational rehearsal or burden/usability check rather than clean evidence for the central comparison claim.
 
-- Session logs (timings, decisions, match logs) exported via the interface are plain JSON
-  files on the facilitator's machine. Keep them only as long as needed for analysis, store
-  them with role labels rather than names unless the participant explicitly consented to be
-  named, and delete them once the pilot's `docs/EXPERIMENT_PROTOCOL.md` decision has been
-  made and recorded.
+## Run each case
+
+1. Confirm the selected participant packet and exact question.
+2. Start both analysts simultaneously in isolated workspaces.
+3. Each analyst records and freezes a path without discussion.
+4. Privately transfer/import both paths into the reviewer browser.
+5. Download the prose-only baseline packet. It contains unit text only and omits structure, evidence links, dependencies, confidence, suggestions, and report output.
+6. Give the baseline packet to the reviewer under the fixed time box **before** structured review.
+7. Enter the baseline duration.
+8. Open Reviewer Matching under the preassigned mode; tool-assisted timing starts.
+9. Reviewer confirms, rejects, or manually adds matches. Contradiction is assessed separately.
+10. Generate the report; tool-assisted timing ends.
+11. Reviewer grades every event before seeing facilitator design notes or joining a group discussion.
+12. Reviewer records every important divergence they believe the report missed.
+13. Conduct the post-session questions.
+14. Export both paths, all report formats, and the session log before changing cases.
+15. Reopen the exports and preserve untouched originals.
+
+## Timing
+
+- Analyst timing, edits, validation errors, abandoned fields, and completion are recorded automatically.
+- The baseline is timed manually and entered before Reviewer Matching.
+- Tool-assisted reviewer time starts when Reviewer Matching opens and ends when the report is generated.
+- The session log must contain both `baseline_prose` and `tool` timing records.
+- Keep a manual timer as a cross-check and record discrepancies.
+- Do not truncate a participant merely to preserve the advertised estimate. Overrun is burden evidence.
+
+## Baseline contamination rule
+
+If the reviewer sees structured paths, unit types, evidence links, dependencies, confidence, candidate suggestions, or report output before completing the baseline, that baseline is contaminated. Rerun it with an eligible reviewer when possible; otherwise exclude it or report it as not independently interpretable.
+
+## Event grading
+
+Use the exact labels and formulas in `docs/SCORING_RUBRIC.md`. Grade every generated event before discussion. Record important unreported differences separately as `missing_divergences`.
+
+## Post-session questions
+
+Ask each participant:
+
+1. Reuse intent on the predefined 1–5 scale.
+2. What was harder or easier than normal prose/review?
+3. Which terms or workflow steps were confusing?
+4. Reviewer only: did suggestions or visible scores affect decisions?
+
+Separate direct observations from interpretation.
+
+## Data handling
+
+- Use role labels, not names, in analysis files.
+- Store raw paths, reports, timings, decisions, grades, interviews, and deviations privately.
+- Preserve untouched originals and work from copies.
+- Do not commit participant prose, path files, completed logs, schedules, or contact details publicly.
+- Minimize identifying free text; do not promise anonymity when writing style or details could indirectly identify someone.
+- Delete retained participant data after the predeclared decision and writeup unless another period was agreed in advance.
 
 ## Protocol deviations
 
-Log any deviation from this runbook — technical failure, a participant seeing something they
-shouldn't have, a skipped step — as a `protocol_deviation` entry
-(`docs/DATA_DICTIONARY.md#protocol_deviation`) rather than silently adjusting the numbers.
-Deviations do not have to sink a case; they have to be visible in the writeup.
+Record technical failures, transfer failures, sequential analyst entry, skipped steps, early exposure, timing problems, withdrawal, facilitator intervention, and any unplanned change. For each, record whether the affected result was included, excluded, rerun, or reported with caveat.
 
 ## After the session
 
-1. Export the report (JSON/Markdown/CSV) and the session log from the Results screen for
-   each case.
-2. Merge the three cases' session data into one file matching the shape
-   `fixtures/sample-session.json` demonstrates, and run:
+1. Inventory both paths, baseline material, reports, session logs, event grades, missing divergences, questionnaires, interviews, and deviations for all cases.
+2. Preserve raw originals and create analysis copies.
+3. Assemble the `experiment_result` shape shown in `fixtures/sample-session.json`.
+4. Run:
    ```bash
    npm run analyze -- your-merged-session.json
    ```
-3. Compare the output against the continue / pivot / stop criteria in
-   `docs/SCORING_RUBRIC.md`. Record the decision and why, including any metric that was
-   "not yet scoreable" due to missing data.
+5. Report every numerator, denominator, exclusion, and `not yet scoreable` note.
+6. Apply the predefined scoring rubric.
+7. Record **continue**, **pivot**, **stop**, or **not yet scoreable**.
+8. Report negative, null, misleading, and missing findings as prominently as favorable findings.

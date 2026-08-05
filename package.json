@@ -1,6 +1,6 @@
 {
   "name": "reasoning-diff-lab",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "private": true,
   "type": "module",
   "description": "A local-first research instrument for pilot-testing whether comparing two independently produced structured reasoning paths reveals useful, non-obvious divergences.",

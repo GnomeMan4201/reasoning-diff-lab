@@ -1,0 +1,25 @@
+name: Verify
+
+on:
+  push:
+    branches: [main, "release/**", "fix/**"]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Verify tests, build, and built artifact
+        run: npm run verify
