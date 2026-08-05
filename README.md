@@ -12,6 +12,14 @@ usefulness, usability, scientific validity, or market demand. See
 [docs/VERIFICATION_REPORT.md](docs/VERIFICATION_REPORT.md) and
 [docs/research-assessment-v0.1.md](docs/research-assessment-v0.1.md).
 
+> **Pilot recruitment is open.** The first session needs two independent analysts and one
+> reviewer for a roughly 90-minute local test using synthetic evidence only. See
+> [Issue #1: Pilot participants wanted](https://github.com/GnomeMan4201/reasoning-diff-lab/issues/1).
+>
+> The pilot instrument is frozen on [`release/v2.0.0`](https://github.com/GnomeMan4201/reasoning-diff-lab/tree/release/v2.0.0).
+> Facilitators should use the [pilot session checklist](docs/PILOT_SESSION_CHECKLIST.md) and
+> record deviations rather than changing the instrument mid-session.
+
 ## Why this exists
 
 Investigations usually preserve evidence and final conclusions better than the reasoning that
@@ -96,8 +104,12 @@ scorecard in [docs/DEVELOPER_HANDOFF.md](docs/DEVELOPER_HANDOFF.md).
 
 ## Start here
 
+- Volunteering for the pilot? Read
+  [Issue #1](https://github.com/GnomeMan4201/reasoning-diff-lab/issues/1).
 - New participant in a pilot? Read [QUICKSTART.md](QUICKSTART.md) — under five minutes.
-- Facilitating a pilot session? Read [PILOT_RUNBOOK.md](PILOT_RUNBOOK.md) and the
+- Facilitating a pilot session? Use the
+  [pilot session checklist](docs/PILOT_SESSION_CHECKLIST.md), then read
+  [PILOT_RUNBOOK.md](PILOT_RUNBOOK.md) and the
   [one-page facilitator packet](docs/FACILITATOR_PACKET.md).
 - Analyst? Read [docs/ANALYST_GUIDE.md](docs/ANALYST_GUIDE.md).
 - Reviewer? Read [docs/REVIEWER_GUIDE.md](docs/REVIEWER_GUIDE.md).
@@ -165,10 +177,11 @@ capture burden. That is the pilot's job.
 
 ## Next step
 
-Do not add scope. Run the pilot with two independent analysts, one uninvolved reviewer, and the
-three included cases. Feed the exported session data into `cli/analyze.js`, compare the result
-against [docs/SCORING_RUBRIC.md](docs/SCORING_RUBRIC.md), and record **continue**, **pivot**,
-**stop**, or **not yet scoreable**.
+Do not add scope. Recruit two independent analysts and one uninvolved reviewer, then run the
+three included cases from the frozen `release/v2.0.0` branch. Feed the exported session data into
+`cli/analyze.js`, compare the result against
+[docs/SCORING_RUBRIC.md](docs/SCORING_RUBRIC.md), and record **continue**, **pivot**, **stop**,
+or **not yet scoreable**.
 
 Only expand the product after real participant evidence justifies it.
 
