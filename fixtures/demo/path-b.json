@@ -1,0 +1,18 @@
+{
+  "id": "demo-path-b",
+  "case_id": "demo-training",
+  "analyst_id": "analyst_b",
+  "question": "What most likely caused the nightly report to arrive late?",
+  "evidence": [
+    {"id": "D1", "text": "The report job was scheduled to start at 02:00."},
+    {"id": "D2", "text": "The upstream input file arrived at 02:23."},
+    {"id": "D3", "text": "Processing took four minutes, matching its normal duration."},
+    {"id": "D4", "text": "The completed report was delivered at 02:28."}
+  ],
+  "units": [
+    {"id": "B1", "type": "observation", "text": "Processing duration was normal once the input became available.", "evidence_refs": ["D2", "D3"], "depends_on": [], "confidence": 0.95, "source": "guided", "confirmed": true},
+    {"id": "B2", "type": "inference", "text": "The reporting system itself was not unusually slow.", "evidence_refs": ["D3"], "depends_on": ["B1"], "confidence": 0.84, "source": "guided", "confirmed": true},
+    {"id": "B3", "type": "claim", "text": "Late upstream data, rather than slow processing, explains the delayed report.", "evidence_refs": ["D1", "D2", "D4"], "depends_on": ["B2"], "confidence": 0.9, "source": "guided", "confirmed": true},
+    {"id": "B4", "type": "unknown", "text": "It is unknown why the upstream file arrived late.", "evidence_refs": [], "depends_on": ["B3"], "confidence": 0.6, "source": "guided", "confirmed": true}
+  ]
+}
