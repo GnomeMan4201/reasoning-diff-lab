@@ -1,0 +1,14 @@
+{
+  "case_id": "case-02-ambiguous",
+  "title": "Enterprise account churn (ambiguous)",
+  "research_question": "Why did the enterprise account most likely churn?",
+  "difficulty": "ambiguous",
+  "analyst_instructions": "Read the evidence packet only. Do not discuss it with the other analyst. More than one interpretation may remain plausible; make uncertainty and alternative explanations explicit.",
+  "reviewer_instructions": "Complete the prose-only baseline before opening Reviewer Matching. This case has no single designed correct answer. Grade the report against the paths as written, not against a hidden preferred conclusion.",
+  "evidence": [
+    {"id": "E1", "text": "The account's contract renewal quote increased 40% year over year."},
+    {"id": "E2", "text": "Exit survey response: 'cost no longer matched the value we were getting, and support was slow toward the end.'"},
+    {"id": "E3", "text": "Support ticket volume for this account tripled in the final quarter."},
+    {"id": "E4", "text": "A competitor announced a comparable product at a lower price two months before churn."}
+  ]
+}
