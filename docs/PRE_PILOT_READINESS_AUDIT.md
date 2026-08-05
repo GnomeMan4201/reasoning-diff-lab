@@ -1,205 +1,212 @@
 # Pre-Pilot Readiness Audit
 
-This is the hostile go/no-go review for the first Reasoning Diff Lab human pilot. It separates implementation verification from operational readiness and empirical validity.
+This is the hostile go/no-go review for the first Reasoning Diff Lab human pilot. It separates internal implementation verification, operational readiness, and empirical validity.
 
 ## Current judgment
 
-**Do not schedule the session on v2.0.0.** The deterministic engine is internally verified, but a deeper browser-workflow review found participant-exposure and measurement defects that would contaminate the pilot. Those defects are addressed in the v2.0.1 safety patch candidate and must pass CI plus a cold-machine rehearsal before promotion.
+- **Do not use v2.0.0 for participants.** Its deterministic engine passed tests, but its browser workflow had evidence-delivery, blinding, reset, timing, logging, and transfer defects.
+- The v2.0.1 candidate corrects those defects without changing the research questions, taxonomy, matcher weights, engine rules, event catalog, scoring thresholds, or analysis formulas.
+- The candidate has passed GitHub Actions on Node.js 20 with 65 tests, a successful build, 22 expected fixture events, and expanded pilot-safety smoke checks.
+- Recruitment may continue. Scheduling remains blocked until `release/v2.0.1` is frozen and the actual device arrangement passes the cold rehearsal.
 
-Recruitment may continue while the patch is verified. Do not promise a session date until a host computer is identified and the final technical preflight passes.
-
-## 1. Research question and scope
+## 1. Research design
 
 | Check | Status | Boundary |
 |---|---|---|
-| One falsifiable pilot question | Ready | Usefulness and burden are reported separately. |
-| Pilot distinguished from powered study | Ready | One analyst pair, one reviewer, and three cases cannot support general population claims. |
-| Continue / pivot / stop thresholds frozen | Ready | Do not revise after seeing participant data. |
-| Prose-only comparison condition | Ready | It must occur before tool-assisted review. |
-| Review modes counterbalanced | Ready | Assign modes before the session. |
-| Instrument changes frozen during a session | Ready | Record deviations instead of repairing the procedure mid-run. |
+| Narrow falsifiable question | Ready | Usefulness and burden remain separate outcomes. |
+| Prose-only baseline | Ready | Must occur before structured review. |
+| Three review modes | Ready | Assign before participant work; rotate across sessions. |
+| Three case types | Ready | Straightforward, ambiguous, and noisy/incomplete. |
+| Thresholds frozen | Ready | Do not revise after seeing human data. |
+| Pilot distinguished from study | Ready | One trio is formative and non-generalizable. |
+| Simultaneous analyst exposure | Required | A sequential one-host run is a protocol deviation. |
 
-## 2. Participant protection and consent
+## 2. Participant protection
 
-| Check | Status | Required action |
+| Check | Status | Action |
 |---|---|---|
 | Plain-language consent | Ready | Read the runbook language verbatim. |
-| Voluntary withdrawal | Ready | Stop, do not export, and reset local data. |
-| Role labels instead of names | Ready | Use Analyst A, Analyst B, Reviewer, Facilitator. |
-| Synthetic evidence only | Ready | Reject real client, patient, employer, or case data for this first pilot. |
-| Public-issue privacy warning | Ready | Move schedules and contact details to a private channel. |
-| Compensation and incentives | Undecided | If compensation is offered, define it before recruitment and provide it regardless of whether feedback is positive. |
-| Formal ethics review | Not claimed | This is a small independent formative pilot, not an institutionally approved human-subjects study. Do not describe it as IRB-approved or equivalent. Seek appropriate review before institutional, clinical, academic, or publishable human-subjects research. |
+| Withdrawal | Ready | Stop, do not export/analyze, reset local data. |
+| Role labels | Ready | Use Analyst A, Analyst B, Reviewer, Facilitator. |
+| Synthetic evidence only | Ready | Reject real client, patient, employer, or case data. |
+| Private coordination | Ready | Move schedules, contact details, and path files off public issues. |
+| Compensation | Undecided | Define before recruitment; never condition it on favorable feedback. |
+| Formal ethics approval | Not claimed | Do not describe this as IRB-approved or equivalent. Seek appropriate review before institutional, clinical, academic, or publishable human-subjects research. |
 
-## 3. Recruitment and screening
+## 3. Recruitment truthfulness
 
-| Check | Status | Required action |
-|---|---|---|
-| Recruitment issue | Ready | Keep one public source of truth. |
-| Two analysts and one reviewer | Open | Do not collapse analyst and reviewer roles. |
-| Prior fixture exposure screening | Required | Ask directly before scheduling. |
-| Independence between analysts | Required | Avoid pairs likely to coordinate or share an established case narrative. |
-| Volunteer sample limitation | Known | Report self-selection and domain-background bias. |
-| Public reference paths | Known risk | The repository contains reference paths. Ask volunteers not to inspect fixture answers and exclude anyone who has. For a later confirmatory study, use privately held or newly generated cases. |
+- Analyst commitment: approximately 60–90 minutes each.
+- Reviewer commitment: approximately 90–120 minutes.
+- Facilitator commitment: approximately 2.5–3.5 hours total, which may be split into role-specific blocks.
+- Do not advertise the complete three-case workflow as one 90-minute all-role session.
+- Screen every volunteer for exposure to public fixture paths, reviewer decisions, design notes, and scoring materials.
+- Report self-selection and domain-background bias.
 
 ## 4. Technical integrity
 
 | Check | v2.0.0 | v2.0.1 candidate |
-|---|---:|---:|
-| Production model / engine tests | Pass | Must remain passing |
-| Static build and smoke test | Pass | Expanded safety smoke test pending CI |
-| Participant evidence visible in UI | Blocked | Added participant-safe packets |
-| Facilitator design note absent from participant UI | Unsafe | Separated from participant packet |
-| Separate non-pilot training demo | Blocked | Added |
-| Analyst reviewer-screen guard | Blocked | Added |
-| Analyst path export / reviewer import | Blocked | Added with exact case/question/evidence validation |
-| Real local reset control | Blocked | Added |
-| Baseline-before-tool enforcement | Documentation only | Enforced in UI |
-| Reviewer baseline and tool timing export | Incomplete | Added |
-| Suggested rejection logging | Incorrect | Corrected (`unrelated` → `rejected`) |
-| Raw path preservation in session export | Incomplete | Added |
-| Default network binding | All interfaces possible | Loopback by default |
-| Automated CI | Missing | Added |
+|---|---|---|
+| Model/engine/report tests | Pass | Pass, expanded to 65 total tests |
+| Static build and fixture smoke | Pass | Pass: 22 events across three cases |
+| Participant evidence in UI | Missing | Dedicated participant packets |
+| Facilitator-note separation | Unsafe | Participant packets omit protected notes |
+| Training demo | Could expose pilot references | Separate non-pilot fixture |
+| Analyst reviewer-screen guard | Missing | Added |
+| Path download/import | Missing | Added with role/case/question/evidence validation |
+| Local reset | Missing | Added |
+| Baseline-first enforcement | Prose only | UI gate added |
+| Reviewer timing export | Incomplete | Baseline and tool conditions exported |
+| Suggested rejection logging | Incorrect | `unrelated` records `rejected` |
+| Raw path preservation | Incomplete | Included in private session log |
+| Server binding | Potentially broad | Loopback by default |
+| CI | Missing | Passing GitHub Actions workflow |
 
 ## 5. Blinding and information control
 
 Before each case:
 
-- Analysts receive only the participant packet and exact question.
-- Analysts do not see each other's paths before both are frozen.
-- The completed training demo uses a separate case and cannot load pilot reference paths.
-- Reviewer matching remains inaccessible to analyst roles.
-- The reviewer completes the prose-only baseline before opening structured review.
-- Design notes and reference answers remain facilitator-only until event grading is finished.
-- If a protected note or reference path is exposed, record the exposure and decide whether the affected case must be excluded.
+- Both analysts receive the same participant-safe evidence and exact question at the same time.
+- Analysts work independently and cannot open reviewer/results screens.
+- Only `demo-training` is used for training.
+- Public reference paths, reviewer decisions, expected risks, and facilitator design notes remain unseen until event grading finishes.
+- Reviewer completes the prose-only baseline before viewing structured paths or suggestions.
+- Early exposure is logged immediately and triggers rerun, exclusion, or explicit caveat.
 
-The browser guard is an operational boundary, not an authentication system. The facilitator still controls the device and role selector.
+Browser controls support this boundary but do not provide authentication. The facilitator remains responsible for supervision.
 
-## 6. Session equipment and environment
+## 6. Equipment and environment
 
-Required:
+Required for a protocol-conforming session:
 
-- one working laptop or desktop with Node.js 20 or newer;
-- a supported modern browser;
-- permission to run a loopback HTTP server;
-- a private folder for exports;
-- a manual fallback timer;
-- a quiet 90–120 minute block;
-- power supply and stable device storage;
-- a private transfer channel if analyst path files move between devices.
+- one verified facilitator/reviewer laptop or desktop with Node.js 20+;
+- two simultaneous isolated analyst workspaces, normally separate laptops/desktops or independently verified devices;
+- modern browsers and permission to run the local application;
+- private storage for raw exports;
+- a private path-transfer method;
+- manual backup timer;
+- power supplies and stable storage;
+- quiet analyst and reviewer blocks;
+- 2.5–3.5 hours of facilitator availability.
 
-Preferred first format: co-located and facilitator-controlled. Separate analyst devices are acceptable after path export/import is rehearsed. Remote participation adds transfer, timing, privacy, and blinding failure modes and must be rehearsed before use.
+A single laptop may support a sequential rehearsal, but not clean simultaneous analyst exposure. Record such use as `sequential_analyst_entry_single_host` and treat the result mainly as operational/burden evidence.
+
+A network-accessible local server must be deliberately configured, rehearsed on a trusted network, and risk-reviewed. The default remains `127.0.0.1`.
 
 ## 7. Cold-machine rehearsal
 
-Run this on the actual host machine before scheduling:
+Run on the exact final setup before scheduling:
 
-1. Download the final frozen release branch.
-2. Confirm `node --version` is 20 or newer.
-3. Run `npm run verify` and save the terminal result.
-4. Run `npm start` and confirm it binds to `127.0.0.1` by default.
+1. Download the frozen `release/v2.0.1` tree.
+2. Confirm Node.js 20 or newer.
+3. Run `npm run verify` and retain the result.
+4. Run `npm start` and confirm loopback binding by default.
 5. Load the separate training demo.
 6. Reset all local session data.
-7. Enter and save a temporary Analyst A path.
-8. Download the path JSON.
-9. Reset, switch to reviewer, and import valid Analyst A and Analyst B demo paths.
-10. Attempt a wrong-case import and confirm it is rejected.
-11. Download the prose-only baseline packet.
-12. Confirm Reviewer Matching is locked until baseline duration is entered.
-13. Mark one suggestion unrelated and confirm the exported log records `rejected`.
-14. Generate and reopen JSON, Markdown, CSV, and session-log exports.
-15. Confirm the session log contains both baseline and tool reviewer timings.
-16. Reset and confirm the prior paths and report are gone.
+7. Enter and freeze a temporary demo Analyst A path.
+8. Download that path JSON.
+9. Create/download a demo Analyst B path from the second analyst workspace.
+10. Import both paths into the reviewer browser.
+11. Attempt a wrong-case or modified-evidence import and confirm rejection.
+12. Download the prose-only baseline packet.
+13. Confirm Reviewer Matching remains locked until baseline duration is entered.
+14. Mark a suggestion unrelated and confirm the session log records `rejected`.
+15. Generate, download, and reopen JSON, Markdown, CSV, and session-log exports; confirm both reviewer timing conditions.
+16. Reset every participant/reviewer workspace and confirm prior paths and reports are gone.
 
-A failure in steps 1–16 blocks scheduling. Fix or reschedule; do not improvise during the human session.
+Any failure blocks scheduling. Fix or reschedule; do not improvise during the human session.
 
-## 8. Data collection and retention
+## 8. Data inventory and retention
 
 Private raw artifacts per case:
 
 - Analyst A frozen path;
 - Analyst B frozen path;
-- prose-only baseline packet and notes;
-- comparison report JSON, Markdown, and CSV;
-- session log with analyst timing, reviewer timing, match logs, and final decisions;
+- baseline packet, timing, and difference notes;
+- report JSON, Markdown, and CSV;
+- session log with paths, analyst timings, reviewer timings, match logs, and decisions;
 - event grades;
-- missing-divergence entries;
-- participant questionnaires and interview notes;
+- missing-divergence records;
+- role-labeled questionnaires and interviews;
 - protocol deviations.
 
-Preserve untouched raw exports and analyze copies. Do not commit completed session records, raw participant prose, identifying details, or timing data to the public repository. Delete retained participant data after the predeclared pilot decision and writeup unless a longer period was explicitly agreed in advance.
+Preserve untouched originals and analyze copies. Do not commit participant prose, path files, raw timing, completed records, names, schedules, or contact details publicly. Minimize identifying free text. Delete retained participant data after the predeclared decision and writeup unless another period was agreed in advance.
 
 ## 9. Analysis integrity
 
-- Use `cli/analyze.js`; do not hand-recalculate formulas differently.
+- Use `cli/analyze.js`; do not substitute favorable hand calculations.
 - Report numerator, denominator, exclusions, and every `not yet scoreable` result.
-- Keep case 2 separate where required because it has no designed correct answer.
-- Do not combine usefulness and burden into one favorable composite.
-- Report misleading findings and missed divergences as prominently as useful findings.
-- Treat one trio's results as formative evidence only.
-- Preserve rejected suggestions and manual matches when examining anchoring.
-- Do not change thresholds after seeing the output.
+- Keep case 2 separate where the protocol requires it.
+- Never collapse usefulness and burden into one composite score.
+- Report misleading, wrong, duplicated, low-value, and missed findings alongside useful findings.
+- Preserve accepted, rejected, and manual match interactions for anchoring analysis.
+- Treat one trio as formative evidence only.
+- Do not move thresholds after seeing results.
 
-## 10. Failure and contingency rules
+## 10. Failure rules
 
-| Failure | Action |
+| Failure | Required action |
 |---|---|
-| Test, build, or smoke failure | Stop; do not run the pilot on that checkout. |
-| Export failure | Stop; do not reconstruct missing data from memory. |
-| Analyst collaboration before freeze | Record deviation and assess exclusion. |
-| Reviewer sees structure before baseline | Exclude or rerun the affected baseline; do not call it uncontaminated. |
-| Participant sees design note/reference answer | Record exposure and assess case exclusion. |
-| Participant withdraws | Stop, do not export, reset their local data. |
-| One role cancels | Replace or reschedule; do not merge roles. |
-| Real sensitive evidence offered | Decline and return to synthetic cases. |
-| Remote transfer cannot preserve privacy/blinding | Switch to co-located format or reschedule. |
-| Session exceeds time box due to setup trouble | Record the burden and deviation; do not silently remove it. |
+| Test/build/smoke failure | Stop; do not run that checkout. |
+| Participant packet missing | Stop. |
+| Path transfer/import failure | Stop or reschedule; do not retype from memory. |
+| Export cannot reopen | Stop; do not reconstruct data. |
+| Analysts discuss before freeze | Log and assess exclusion. |
+| Analysts start at different times | Log the sequential-exposure deviation. |
+| Reviewer sees structure before baseline | Rerun with eligible reviewer or exclude/caveat baseline. |
+| Protected reference/design material exposed | Log and assess case exclusion. |
+| Participant withdraws | Stop, do not export/analyze, reset their data. |
+| Role cancels | Replace or reschedule; never merge analyst/reviewer roles. |
+| Sensitive real evidence offered | Decline and return to synthetic material. |
+| Privacy or blinding cannot be maintained | Reschedule or change to a rehearsed setup. |
+| Work takes longer than estimated | Preserve the actual time as burden evidence. |
 
 ## 11. Communication discipline
 
-Accurate statements:
+Accurate:
 
-- the implementation is internally verified against included fixtures;
-- the v2.0.1 candidate corrects pre-pilot workflow defects;
-- the usefulness hypothesis remains empirically unvalidated;
-- negative, null, or stop results are acceptable.
+- the candidate passes its internal automated verification;
+- v2.0.1 fixes identified pre-pilot workflow defects;
+- usefulness and human burden remain empirically unvalidated;
+- negative, null, pivot, stop, and not-yet-scoreable outcomes are acceptable.
 
 Do not claim:
 
 - the tool improves investigations;
-- the taxonomy captures how people actually think;
-- the pilot proves effectiveness;
+- it detects bad reasoning or determines truth;
+- the taxonomy accurately models human thought;
 - automated tests establish usability or scientific validity;
-- the tool determines truth or identifies the better analyst.
+- one trio demonstrates effectiveness;
+- a one-laptop sequential run is protocol-equivalent;
+- the full workflow requires only 90 minutes from everyone.
 
 ## 12. Post-pilot outputs
 
-After the session:
-
 1. Freeze and inventory raw data.
-2. Record all deviations before looking for favorable interpretations.
-3. Assemble the merged session file.
+2. Record deviations before interpretation.
+3. Assemble the merged experiment result.
 4. Run the predefined analysis.
 5. Record **continue**, **pivot**, **stop**, or **not yet scoreable**.
-6. Write a results note separating facts, interpretations, and unknowns.
-7. Open narrowly scoped issues tied to observed failures.
-8. Do not build v2.1 from hypothetical improvements unsupported by session evidence.
+6. Publish a results note separating facts, interpretations, limitations, and unknowns.
+7. Open narrow issues tied to observed failures.
+8. Build v2.1 only from repeated or materially important participant evidence.
 
-## Go / no-go gate
+## Go/no-go gate
 
-The first human session may be scheduled only when every item below is true:
+Do not schedule the human pilot until all are true:
 
-- [ ] v2.0.1 verification workflow passes.
-- [ ] Final `release/v2.0.1` branch is frozen.
-- [ ] Actual host computer identified.
-- [ ] Cold-machine rehearsal passes all 16 steps.
+- [ ] Final candidate CI passes.
+- [ ] `release/v2.0.1` is frozen at the verified commit.
+- [ ] Facilitator/reviewer computer identified.
+- [ ] Two simultaneous analyst workspaces identified.
+- [ ] All 16 cold-rehearsal steps pass.
 - [ ] Analyst A confirmed and screened.
 - [ ] Analyst B confirmed and screened.
 - [ ] Reviewer confirmed and screened.
-- [ ] Private scheduling channel established.
-- [ ] Primary and backup dates agreed.
-- [ ] Private storage location prepared.
-- [ ] Review-mode assignment recorded before starting.
-- [ ] Consent, withdrawal, and failure rules understood by the facilitator.
+- [ ] Private coordination and transfer channels established.
+- [ ] Role-specific time commitments accepted.
+- [ ] Primary and backup blocks agreed.
+- [ ] Private storage and manual timer prepared.
+- [ ] Review-mode assignment recorded.
+- [ ] Facilitator understands consent, withdrawal, contamination, failure, and deviation rules.
 
 Until then: recruit, screen, and prepare—but do not run the session.
