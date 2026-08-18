@@ -60,6 +60,7 @@ Both analysts must begin each case from the same evidence at the same time in is
 
 - Participant: [QUICKSTART.md](QUICKSTART.md)
 - Facilitator: [PILOT_RUNBOOK.md](PILOT_RUNBOOK.md)
+- Contributing and external review: [CONTRIBUTING.md](CONTRIBUTING.md)
 - Go/no-go audit: [docs/PRE_PILOT_READINESS_AUDIT.md](docs/PRE_PILOT_READINESS_AUDIT.md)
 - Checklist: [docs/PILOT_SESSION_CHECKLIST.md](docs/PILOT_SESSION_CHECKLIST.md)
 - Coordination: [docs/PILOT_COORDINATION.md](docs/PILOT_COORDINATION.md)
